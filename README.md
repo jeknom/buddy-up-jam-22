@@ -13,4 +13,4 @@ A game jam that took place on 07.02.2022 - 22.02.2022 and had around 230 partici
 
 ## Instructions
 
-- [Setting up the development environment](docs\setting-up-development-environment.md)
+- [Setting up the development environment](./docs/setting-up-development-environment.md)
