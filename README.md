@@ -14,3 +14,7 @@ A game jam that took place on 07.02.2022 - 22.02.2022 and had around 230 partici
 ## Instructions
 
 - [Setting up the development environment](./docs/setting-up-development-environment.md)
+
+## Special thanks to
+
+- HiddenMonk at StackOverflow - [BoxCast debugging script comment](https://answers.unity.com/questions/1156087/how-can-you-visualize-a-boxcast-boxcheck-etc.html)

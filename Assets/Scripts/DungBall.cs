@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
 public class DungBall : MonoBehaviour
@@ -12,12 +13,13 @@ public class DungBall : MonoBehaviour
     [Header("Modifiers")]
     [SerializeField, Range(1f, 10f)] float maxSize = 10f;
     [SerializeField, Range(1f, 10f)] float minSize = 1f;
+    [SerializeField, Range(1f, 100f)] float maxMass = 30f;
     [SerializeField, Range(0.01f, 1f)] float collisionRadiusSize = 0.90f;
     [SerializeField, Range(0.1f, 1f)] float scalingModifier = 0.5f;
 
     [Header("Other")]
     [SerializeField] bool debug;
-    [SerializeField] Rect debugPos = new Rect(new Vector2(0f, 0f), new Vector2(100f, 50f));
+    [SerializeField] Rect debugPos = new Rect(new Vector2(0f, 0f), new Vector2(500f, 30f));
 
     CircleCollider2D collider2d;
     Rigidbody2D rb2d;
@@ -56,7 +58,11 @@ public class DungBall : MonoBehaviour
             return;
         }
 
+
+        var massPercentage = currentScale / this.maxSize;
         var sizeChange = new Vector3(sizeModifier, sizeModifier, 1f);
+
+        this.rb2d.mass = this.maxMass * massPercentage;
         this.transform.localScale += sizeChange;
     }
 
@@ -66,9 +72,14 @@ public class DungBall : MonoBehaviour
         var hit = Physics2D.CircleCast(
             origin: playerBounds.center,
             radius: this.collider2d.radius + this.collisionRadiusSize,
-            direction: Vector2.one,
+            direction: Vector2.down,
             distance: 1f,
             layerMask: this.groundLayer);
+
+        if (hit && this.debug)
+        {
+            Debug.DrawLine(this.rb2d.position, hit.point, Color.red, .01f);
+        }
 
         return hit;
     }
@@ -78,20 +89,23 @@ public class DungBall : MonoBehaviour
         if (this.debug)
         {
             var groundHit = this.GetCollision();
-            var tagName = groundHit.collider != null ? groundHit.collider.tag : "None";
-            var behaviourName = groundHit.collider != null ? groundHit.collider.name : "None";
-            var tagText = $"Hit tag: {tagName}";
-            var behaviourText = $"Hit object name: {behaviourName}";
-            var secondPos = GetLabelNextLine(this.debugPos);
-            var thirdPos = GetLabelNextLine(secondPos);
-            var fourthPos = GetLabelNextLine(thirdPos);
-            var fifthPos = GetLabelNextLine(fourthPos);
+            var debugged = new List<(string, string)>
+            {
+                ( "Hit tag", groundHit.collider != null ? groundHit.collider.tag : "None" ),
+                ( "Hit GameObject", groundHit.collider != null ? groundHit.collider.name : "None" ),
+                ( "Scale", $"Min {this.minSize} | Max {this.maxSize} | Current {(int)this.transform.localScale.x} | {(this.transform.localScale.x / this.maxSize).ToString("#0.#%")}" ),
+                ( "Mass", $"Max {this.maxMass} | Current {(int)this.rb2d.mass} | {(this.rb2d.mass / this.maxMass).ToString("#0.#%")}" )
+            };
 
-            GUI.Label(this.debugPos, new GUIContent(tagText));
-            GUI.Label(secondPos, new GUIContent(behaviourText));
-            GUI.Label(thirdPos, new GUIContent($"Min scale {this.minSize}"));
-            GUI.Label(fourthPos, new GUIContent($"Max scale {this.maxSize}"));
-            GUI.Label(fifthPos, new GUIContent($"Local scale {this.transform.localScale.x}"));
+            var pos = this.debugPos;
+            for (var i = 0; i < debugged.Count; i++)
+            {
+                var item = debugged[i];
+                GUI.Label(pos, new GUIContent($"{item.Item1}: {item.Item2}"), new GUIStyle() {
+                    fontSize = 24
+                });
+                pos = GetLabelNextLine(pos);
+            }
         }    
     }
 
