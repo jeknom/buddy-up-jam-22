@@ -25,7 +25,7 @@ namespace Game
             StartCoroutine(this.OpenVignetteRoutine(true));
         }
 
-        IEnumerator OpenVignetteRoutine(bool addStartDelay)
+        public IEnumerator OpenVignetteRoutine(bool addStartDelay)
         {
             if (this.isShifting)
             {
@@ -50,7 +50,7 @@ namespace Game
             this.isShifting = false;
         }
 
-        IEnumerator CloseVignetteRoutine()
+       public  IEnumerator CloseVignetteRoutine()
         {
             if (this.isShifting)
             {
@@ -68,6 +68,7 @@ namespace Game
             }
 
             this.isShifting = false;
+            GameObject.Find("GameManager").GetComponent<GameManager>().NextLevel();
         }
     }
 }
