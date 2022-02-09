@@ -13,6 +13,10 @@ namespace MovementTemplates.Scripts
             Right,
         }
 
+        // Calling this can be expensive, use with care.
+        // Should make some observer based system for this movement script to make it more efficient.
+        public bool IsGrounded => this.IsColliding(Vector2.down);
+
         [Header("Setup")]
         [SerializeField] LayerMask groundLayer;
         [SerializeField] LayerMask dungBallLayer;
