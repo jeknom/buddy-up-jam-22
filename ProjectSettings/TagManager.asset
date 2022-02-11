@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grower
   - Shrinker
+  - DungBall
   layers:
   - Default
   - TransparentFX
