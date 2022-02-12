@@ -33,8 +33,8 @@ namespace Game
                 var (observable, behaviour) = this.observed[i];
                 if (observable == null)
                 {
-                    Destroy(behaviour.gameObject);
                     this.observed.RemoveAt(i);
+                    behaviour.Remove();
                     continue;
                 }
 

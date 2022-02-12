@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 1403553956}
+  removeDuration: 5
 --- !u!114 &1400152470
 MonoBehaviour:
   m_ObjectHideFlags: 0

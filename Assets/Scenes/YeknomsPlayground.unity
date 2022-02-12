@@ -17884,6 +17884,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Breakable
       objectReference: {fileID: 0}
+    - target: {fileID: 1450763994123596620, guid: 350f70495dd0fde40b3b3224af9c2a25, type: 3}
+      propertyPath: breakDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 350f70495dd0fde40b3b3224af9c2a25, type: 3}
 --- !u!1001 &1554881211130484047

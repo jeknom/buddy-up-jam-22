@@ -20,7 +20,19 @@ namespace Game
 
         IEnumerator BreakInternal()
         {
-            yield return new WaitForSeconds(this.breakDelay);
+            var passedDelay = this.breakDelay;
+            while (passedDelay > 0)
+            {
+                var deltaTime = Time.deltaTime;
+                passedDelay -= deltaTime;
+                var percentOfTimePassed = passedDelay / this.breakDelay;
+                var currentColor = this.spriteRenderer.color;
+                currentColor.a = percentOfTimePassed;
+                this.spriteRenderer.color = currentColor;
+
+                yield return new WaitForSeconds(deltaTime);
+            }
+
 
             Destroy(this.gameObject);
         }
