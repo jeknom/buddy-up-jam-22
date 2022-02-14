@@ -4,12 +4,15 @@ using UnityEngine;
 
 namespace Game
 {
-    [RequireComponent(typeof(RectTransform), typeof(Canvas))]
+    [RequireComponent(typeof(RectTransform))]
     public class StatusManager : MonoBehaviour
     {
+        [Header("Setup")]
         [SerializeField] Transform parent;
         [SerializeField] StatusUI uiPrefab;
         [SerializeField] Camera cam;
+        [SerializeField] Canvas uiCanvas;
+
         List<(StatusObservable, StatusUI)> observed = new List<(StatusObservable, StatusUI)>();
         GameObject player;
         RectTransform canvas;
@@ -17,11 +20,11 @@ namespace Game
         void Start()
         {
             this.player = GameObject.FindGameObjectWithTag("Player");
-            this.canvas = this.GetComponent<RectTransform>();
+            this.canvas = this.uiCanvas.GetComponent<RectTransform>();
             foreach (var observable in GameObject.FindObjectsOfType<StatusObservable>())
             {
                 var instance = Instantiate(this.uiPrefab, this.parent.position, Quaternion.identity);
-                instance.transform.SetParent(canvas);
+                instance.transform.SetParent(this.parent);
                 observed.Add((observable, instance));
             }
         }
