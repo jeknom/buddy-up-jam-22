@@ -1,32 +1,28 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Vector2 = UnityEngine.Vector2;
 
-namespace MovementTemplates.Scripts
+namespace Game
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class Movement : MonoBehaviour
     {
-        public enum Direction
+        public struct PlayerCollision
         {
-            None,
-            Left,
-            Right,
+            public string tag;
+            public Vector2 direction;
         }
 
-        // Calling this can be expensive, use with care.
-        // Should make some observer based system for this movement script to make it more efficient.
-        public bool IsGrounded => this.IsColliding(Vector2.down);
-        public bool IsPushing => this.isPushing;
+        public UnityEvent<List<PlayerCollision>> onUpdateCollisions;
+        public Vector2 Velocity => this.rb2d.velocity;
 
         [Header("Setup")]
-        [SerializeField] LayerMask groundLayer;
-        [SerializeField] LayerMask dungBallLayer;
+        [SerializeField] LayerMask groundLayers;
 
         [Header("Modifiers")]
         [SerializeField, Range(1, 500)] float horizontalAcceleration = 150f;
         [SerializeField, Range(1, 500)] float horizontalMaxSpeed = 15f;
-        [SerializeField, Range(1, 500)] float horizontalMoveFastMaxSpeed = 20f;
-        [SerializeField, Range(1, 500)] float horizontalMoveSlowMaxSpeed = 5f;
         [SerializeField, Range(1, 100)] float jumpForce = 4.5f;
         [SerializeField, Range(0, 1f)] float slide = 0.5f;
         [SerializeField, Range(0, 1f)] float movementSmoothing = 0.01f;
@@ -42,32 +38,38 @@ namespace MovementTemplates.Scripts
         Rigidbody2D rb2d;
         Collider2D collider2d;
         Vector2 currentVelocity = Vector2.zero;
-        Direction lastDirection = Direction.None;
-        bool isMovingFast;
-        bool isMovingSlow;
-        bool isPushing;
+        List<PlayerCollision> currentCollisions;
+
+        public static bool IsGrounded(List<PlayerCollision> collisions)
+        {
+            foreach (var collision in collisions)
+            {
+                if (collision.direction == Vector2.down)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         void Start()
         {
             this.rb2d = this.GetComponent<Rigidbody2D>();
             this.collider2d = this.GetComponent<Collider2D>();
 
-            if (this.groundLayer.value == 0)
+            if (this.groundLayers == 0)
             {
                 Debug.LogWarning(
                     $"{nameof(Movement)}: It seems that the layer mask for the ground layer has not been set. Jumping might not work!");
             }
-
-            if (this.dungBallLayer.value == 0)
-            {
-                Debug.LogWarning(
-                    $"{nameof(Movement)}: It seems that the layer mask for the dung ball has not been set. Jumping on top of it might not work!");
-            }
         }
 
-        public void Move(Direction dir, bool isJumping, bool isSprinting)
+        public void Move(Vector2 dir, bool isJumping, bool isSprinting)
         {
-            var isGrounded = this.IsColliding(Vector2.down);
+            this.currentCollisions = this.GetCollisions();
+            onUpdateCollisions.Invoke(this.currentCollisions);
+            var isGrounded = IsGrounded(this.currentCollisions);
 
             if (!this.allowAirControl && !isGrounded)
             {
@@ -82,34 +84,27 @@ namespace MovementTemplates.Scripts
             this.HandleHorizontalMovement(dir, !isGrounded);
         }
 
-        void HandleHorizontalMovement(Direction dir, bool isInAir)
+        void HandleHorizontalMovement(Vector2 dir, bool isInAir)
         {
             var velocity = this.rb2d.velocity;
-            var switchedDirection = (this.lastDirection == Direction.Left && velocity.x > 0f) ||
-                                    (this.lastDirection == Direction.Right && velocity.x < 0f);
 
-            var result = switchedDirection ? 0f : velocity.x;
-            var maxSpeedToUse = this.isMovingFast ?
-                this.horizontalMoveFastMaxSpeed :
-                this.isMovingSlow ?
-                this.horizontalMoveSlowMaxSpeed :
-                this.horizontalMaxSpeed;
+            var result = velocity.x;
 
-            if (dir == Direction.Left && result > -maxSpeedToUse)
+            if (dir == Vector2.left && result > -this.horizontalMaxSpeed)
             {
                 result -= this.horizontalAcceleration * Time.deltaTime;
             }
-            else if (dir == Direction.Left)
+            else if (dir == Vector2.left)
             {
-                result = -maxSpeedToUse;
+                result = -this.horizontalMaxSpeed;
             }
-            else if (dir == Direction.Right && result < maxSpeedToUse)
+            else if (dir == Vector2.right && result < this.horizontalMaxSpeed)
             {
                 result += this.horizontalAcceleration * Time.deltaTime;
             }
-            else if (dir == Direction.Right)
+            else if (dir == Vector2.right)
             {
-                result = maxSpeedToUse;
+                result = this.horizontalMaxSpeed;
             }
             else
             {
@@ -133,56 +128,61 @@ namespace MovementTemplates.Scripts
             this.rb2d.AddForce(new Vector2(0f, this.jumpForce * this.rb2d.gravityScale), ForceMode2D.Impulse);
         }
 
-        bool IsColliding(Vector2 direction)
+        List<PlayerCollision> GetCollisions()
+        {
+            var collisions = new List<PlayerCollision>();
+            var left = this.GetHit(Vector2.left, this.groundLayers);
+            if (left.collider != null)
+            {
+                collisions.Add(new PlayerCollision
+                {
+                    tag = left.collider.tag,
+                    direction = Vector2.left
+                });
+            }
+
+            var right = this.GetHit(Vector2.right, this.groundLayers);
+            if (right.collider != null)
+            {
+                collisions.Add(new PlayerCollision
+                {
+                    tag = right.collider.tag,
+                    direction = Vector2.right
+                });
+            }
+
+            var down = this.GetHit(Vector2.down, this.groundLayers);
+            if (down.collider != null)
+            {
+                collisions.Add(new PlayerCollision
+                {
+                    tag = down.collider.tag,
+                    direction = Vector2.down
+                });
+            }
+
+            return collisions;
+        }
+
+        RaycastHit2D GetHit(Vector2 dir, LayerMask mask)
         {
             var playerBounds = this.collider2d.bounds;
             var hit = Physics2D.BoxCast(
                 origin: playerBounds.center,
                 size: playerBounds.size * this.collisionBoxSize,
                 angle: 0f,
-                direction: direction,
+                direction: dir,
                 distance: this.collisionBoxLength,
-                layerMask: this.groundLayer);
+                layerMask: mask);
 
-            var isHit = hit.collider != null;
-
-            if (!isHit)
-            {
-                hit = Physics2D.BoxCast(
-                    origin: playerBounds.center,
-                    size: playerBounds.size * this.collisionBoxSize,
-                    angle: 0f,
-                    direction: direction,
-                    distance: this.collisionBoxLength,
-                    layerMask: this.dungBallLayer);
-
-                isHit = hit.collider != null;
-            }
-
-            return isHit;
-        }
-
-        void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.tag == "DungBall")
-            {
-                isPushing = true;
-            }
-        }
-
-        void OnCollisionExit2D(Collision2D collision)
-        {
-            if(collision.gameObject.tag == "DungBall")
-            {
-                isPushing = false;
-            }
+            return hit;
         }
 
         void OnGUI()
         {
             if (this.debug)
             {
-                GUI.Label(this.debugPos, new GUIContent($"Is grounded: {this.IsColliding(Vector2.down)}"));
+                GUI.Label(this.debugPos, new GUIContent($"Is grounded: {IsGrounded(this.currentCollisions)}"));
             }
         }
     }

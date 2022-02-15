@@ -265,16 +265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b3e1b8fa73b594da080d2c9167cd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayer:
+  onUpdateCollisions:
+    m_PersistentCalls:
+      m_Calls: []
+  groundLayers:
     serializedVersion: 2
-    m_Bits: 64
-  dungBallLayer:
-    serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   horizontalAcceleration: 300
   horizontalMaxSpeed: 5
-  horizontalMoveFastMaxSpeed: 20
-  horizontalMoveSlowMaxSpeed: 5
   jumpForce: 6
   slide: 0.5
   movementSmoothing: 0.01
@@ -320,3 +318,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6502901f105d51f4d968050f9e93f769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementBehaviour: {fileID: 1554881212240947863}
