@@ -13921,6 +13921,10 @@ MonoBehaviour:
   minVolumeVel: 0.3
   maxVolumeVel: 1
   maxVolume: 0.5
+  minEQGain: 0.4
+  maxEQGain: 2
+  minEQScale: 0.9
+  maxEQScale: 3
   goAudioManager: {fileID: 1651032879}
 --- !u!4 &1120960470 stripped
 Transform:
@@ -13953,6 +13957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651032881}
   - component: {fileID: 1651032880}
+  - component: {fileID: 1651032882}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -13975,24 +13980,28 @@ MonoBehaviour:
   sounds:
   - name: BallRolling
     clip: {fileID: 8300000, guid: 2e84743e1e8a5834fa18a6a7b03955a3, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
     volume: 0.596
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Jump1
     clip: {fileID: 8300000, guid: d1cfc7901be9c07428c354d12bdba3cd, type: 3}
+    output: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Jump2
     clip: {fileID: 8300000, guid: b88d5b1d8d7f52b4c9994ccdc0bc90cd, type: 3}
+    output: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Jump3
     clip: {fileID: 8300000, guid: 62e640cf6e8da9a42ac7d6215bddbbef, type: 3}
+    output: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
@@ -14011,6 +14020,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651032882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651032879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ae158e32271d74094def245ca68534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
 --- !u!1001 &1554881211130484047
 PrefabInstance:
   m_ObjectHideFlags: 0
