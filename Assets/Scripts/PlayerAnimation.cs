@@ -54,5 +54,10 @@ namespace Game
 
             this.playerAnimator.SetBool("IsInAir", isInAir);
         }
+        
+        public void SetPushing(bool isPushing) {
+            this.playerAnimator.SetBool("IsPushing", isPushing);
+
+        }
     }
 }

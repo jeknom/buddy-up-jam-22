@@ -26,8 +26,11 @@ namespace Game
                 Movement.Direction.None;
             var isJumping = Input.GetKeyDown(this.jumpKey);
             var isGrounded = this.movementBehaviour.IsGrounded;
+            var isPushing = this.movementBehaviour.IsPushing;
 
             this.playerAnimation.SetInAir(!isGrounded);
+
+            this.playerAnimation.SetPushing(isPushing);
             if (direction != Movement.Direction.None)
             {
                 this.playerAnimation.SetRunning(direction == Movement.Direction.Right);

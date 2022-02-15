@@ -16,6 +16,7 @@ namespace MovementTemplates.Scripts
         // Calling this can be expensive, use with care.
         // Should make some observer based system for this movement script to make it more efficient.
         public bool IsGrounded => this.IsColliding(Vector2.down);
+        public bool IsPushing => this.isPushing;
 
         [Header("Setup")]
         [SerializeField] LayerMask groundLayer;
@@ -44,6 +45,7 @@ namespace MovementTemplates.Scripts
         Direction lastDirection = Direction.None;
         bool isMovingFast;
         bool isMovingSlow;
+        bool isPushing;
 
         void Start()
         {
@@ -158,6 +160,22 @@ namespace MovementTemplates.Scripts
             }
 
             return isHit;
+        }
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.tag == "DungBall")
+            {
+                isPushing = true;
+            }
+        }
+
+        void OnCollisionExit2D(Collision2D collision)
+        {
+            if(collision.gameObject.tag == "DungBall")
+            {
+                isPushing = false;
+            }
         }
 
         void OnGUI()
