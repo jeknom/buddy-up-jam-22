@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ namespace Game
     [RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
     public class DungBall : MonoBehaviour
     {
+        public const string OBSERVABLE_ID = "Dungball";
         public const string GROWER_TAG = "Grower";
         public const string SHRINKER_TAG = "Shrinker";
 
@@ -18,6 +20,7 @@ namespace Game
         [SerializeField, Range(1f, 100f)] float maxMass = 30f;
         [SerializeField, Range(0.01f, 1f)] float collisionRadiusSize = 0.90f;
         [SerializeField, Range(0.1f, 1f)] float scalingModifier = 0.5f;
+        [SerializeField] string statusTextPrefix = "Ball mass:";
 
         [Header("Other")]
         [SerializeField] bool debug;
