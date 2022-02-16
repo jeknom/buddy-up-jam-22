@@ -253,6 +253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpKey: 32
+  onChangeDirection:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1554881212240947863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,4 +331,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 1554881212240947863}
+  playerInput: {fileID: 1554881212240947861}
   deathColor: {r: 1, g: 0, b: 0, a: 1}

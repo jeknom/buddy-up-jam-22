@@ -9,21 +9,27 @@ namespace Game
     {
         [Header("Setup")]
         [SerializeField] Movement movementBehaviour;
+        [SerializeField] PlayerInput playerInput;
 
         [Header("Modifiers")]
         [SerializeField] Color deathColor = Color.red;
 
         Animator playerAnimator;
         SpriteRenderer playerRenderer;
-        bool isFacingRight = true;
 
         void Awake()
         {
             this.playerAnimator = this.GetComponent<Animator>();
             this.playerRenderer = this.GetComponent<SpriteRenderer>();
+
             this.movementBehaviour.onUpdateCollisions.RemoveListener(UpdateAnimations);
             this.movementBehaviour.onUpdateCollisions.AddListener(UpdateAnimations);
-            this.movementBehaviour.onPlayerDestroy.AddListener(() => this.playerRenderer.color = this.deathColor);
+
+            this.movementBehaviour.onPlayerDestroy.RemoveListener(this.SetDeath);
+            this.movementBehaviour.onPlayerDestroy.AddListener(this.SetDeath);
+
+            this.playerInput.onChangeDirection.RemoveListener(this.Flip);
+            this.playerInput.onChangeDirection.AddListener(this.Flip);
         }
 
         void UpdateAnimations(List<Movement.PlayerCollision> collisions)
@@ -31,13 +37,15 @@ namespace Game
             var isGrounded = Movement.IsGrounded(collisions);
             var velocity = this.movementBehaviour.Velocity;
             var isMovingHorizontally = Math.Abs(velocity.x) > 0.01f;
-            var isFacingRight = velocity.x > 0f;
             var isPushing = false;
 
             foreach (var collision in collisions)
             {
-                var isCollidingLeftOrRight = collision.direction == Vector2.left || collision.direction == Vector2.right;
-                var newValue = collision.tag == "DungBall" && isCollidingLeftOrRight;
+                var isFacingRight = !this.playerRenderer.flipX;
+                var isFacingRightAndCollidingRight = isFacingRight && collision.direction == Vector2.right;
+                var isFacingLeftAndCollidingLeft = !isFacingRight && collision.direction == Vector2.left;
+                var isCollidingLeftOrRight = isFacingLeftAndCollidingLeft || isFacingRightAndCollidingRight;
+                var newValue = collision.tag == "DungBall" && isCollidingLeftOrRight && isMovingHorizontally;
 
                 if (isPushing != newValue)
                 {
@@ -46,46 +54,30 @@ namespace Game
                 }
             }
 
-            this.SetPushing(isGrounded && isPushing);
+            this.SetPushing(isPushing);
             this.SetInAir(!isGrounded);
-
-            if (isMovingHorizontally)
-            {
-                this.SetRunning(isFacingRight);
-            }
-            else if (isGrounded)
-            {
-                this.SetIdle();
-            }
+            this.SetRunning(isMovingHorizontally);
         }
 
-        void SetRunning(bool isFacingRight)
+        void Flip()
         {
-            if (!isFacingRight && !this.playerRenderer.flipX)
-            {
-                this.playerRenderer.flipX = true;
-            }
-            else if (isFacingRight && this.playerRenderer.flipX)
-            {
-                this.playerRenderer.flipX = false;
-            }
+            Debug.Log("Flipping");
+            this.playerRenderer.flipX = !this.playerRenderer.flipX;
+        }
 
-            if (this.playerAnimator.GetBool("IsRunning"))
+        void SetDeath()
+        {
+            this.playerRenderer.color = this.deathColor;
+        }
+
+        void SetRunning(bool isRunning)
+        {
+            if (this.playerAnimator.GetBool("IsRunning") == isRunning)
             {
                 return;
             }
 
-            this.playerAnimator.SetBool("IsRunning", true);
-        }
-
-        void SetIdle()
-        {
-            if (!this.playerAnimator.GetBool("IsRunning"))
-            {
-                return;
-            }
-
-            this.playerAnimator.SetBool("IsRunning", false);
+            this.playerAnimator.SetBool("IsRunning", isRunning);
         }
 
         void SetInAir(bool isInAir)
