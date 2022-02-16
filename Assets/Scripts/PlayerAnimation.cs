@@ -10,6 +10,9 @@ namespace Game
         [Header("Setup")]
         [SerializeField] Movement movementBehaviour;
 
+        [Header("Modifiers")]
+        [SerializeField] Color deathColor = Color.red;
+
         Animator playerAnimator;
         SpriteRenderer playerRenderer;
         bool isFacingRight = true;
@@ -20,6 +23,7 @@ namespace Game
             this.playerRenderer = this.GetComponent<SpriteRenderer>();
             this.movementBehaviour.onUpdateCollisions.RemoveListener(UpdateAnimations);
             this.movementBehaviour.onUpdateCollisions.AddListener(UpdateAnimations);
+            this.movementBehaviour.onPlayerDestroy.AddListener(() => this.playerRenderer.color = this.deathColor);
         }
 
         void UpdateAnimations(List<Movement.PlayerCollision> collisions)
@@ -27,7 +31,6 @@ namespace Game
             var isGrounded = Movement.IsGrounded(collisions);
             var velocity = this.movementBehaviour.Velocity;
             var isMovingHorizontally = Math.Abs(velocity.x) > 0.01f;
-            Debug.Log(velocity.x);
             var isFacingRight = velocity.x > 0f;
             var isPushing = false;
 

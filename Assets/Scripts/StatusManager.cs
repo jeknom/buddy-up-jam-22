@@ -31,6 +31,11 @@ namespace Game
 
         void Update()
         {
+            if (this.player == null)
+            {
+                return;
+            }
+
             for (var i = 0; i < this.observed.Count; i++)
             {
                 var (observable, behaviour) = this.observed[i];

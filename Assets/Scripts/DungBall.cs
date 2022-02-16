@@ -40,19 +40,18 @@ namespace Game
 
         void FixedUpdate()
         {
-            var groundHit = this.GetCollision(this.groundLayer);
-            if (groundHit.collider == null)
-            {
-                return;
-            }
-
-            var destroyHit = this.GetCollision(this.destroyLayer);
-            if (destroyHit.collider != null)
+            var deathHit = this.GetCollision(this.destroyLayer);
+            if (deathHit.collider != null)
             {
                 this.onBallDestroyed.Invoke();
                 Destroy(this.gameObject);
             }
 
+            var groundHit = this.GetCollision(this.groundLayer);
+            if (groundHit.collider == null)
+            {
+                return;
+            }
 
             var verticalVelocity = Mathf.Abs(this.rb2d.velocity.x);
             if (verticalVelocity <= 0f)
@@ -133,5 +132,4 @@ namespace Game
             return rect;
         }
     }
-
 }

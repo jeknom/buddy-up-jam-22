@@ -20,6 +20,7 @@ namespace Game
 
         [Header("Setup")]
         [SerializeField] LayerMask groundLayers;
+        [SerializeField] LayerMask deathLayers;
 
         [Header("Modifiers")]
         [SerializeField, Range(1, 500)] float horizontalAcceleration = 150f;
@@ -189,10 +190,9 @@ namespace Game
 
         void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.collider.gameObject.layer == 9)
+            if (this.deathLayers == (this.deathLayers | (1 << other.collider.gameObject.layer)))
             {
                 this.onPlayerDestroy.Invoke();
-                Destroy(this.gameObject);
             }
         }
     }

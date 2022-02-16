@@ -467,11 +467,15 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  destroyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   maxSize: 3
   minSize: 1
   maxMass: 20
   collisionRadiusSize: 1
   scalingModifier: 0.5
+  statusTextPrefix: 'Ball mass:'
   debug: 1
   debugPos:
     serializedVersion: 2
@@ -479,3 +483,6 @@ MonoBehaviour:
     y: 0
     width: 500
     height: 30
+  onBallDestroyed:
+    m_PersistentCalls:
+      m_Calls: []

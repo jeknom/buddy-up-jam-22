@@ -268,9 +268,15 @@ MonoBehaviour:
   onUpdateCollisions:
     m_PersistentCalls:
       m_Calls: []
+  onPlayerDestroy:
+    m_PersistentCalls:
+      m_Calls: []
   groundLayers:
     serializedVersion: 2
     m_Bits: 192
+  deathLayers:
+    serializedVersion: 2
+    m_Bits: 768
   horizontalAcceleration: 300
   horizontalMaxSpeed: 5
   jumpForce: 6
