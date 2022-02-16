@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
 
 namespace Game
@@ -13,6 +14,7 @@ namespace Game
 
         [Header("Setup")]
         [SerializeField] LayerMask groundLayer;
+        [SerializeField] LayerMask destroyLayer;
 
         [Header("Modifiers")]
         [SerializeField, Range(1f, 10f)] float maxSize = 10f;
@@ -25,6 +27,7 @@ namespace Game
         [Header("Other")]
         [SerializeField] bool debug;
         [SerializeField] Rect debugPos = new Rect(new Vector2(0f, 0f), new Vector2(500f, 30f));
+        public UnityEvent onBallDestroyed;
 
         CircleCollider2D collider2d;
         Rigidbody2D rb2d;
@@ -37,10 +40,17 @@ namespace Game
 
         void FixedUpdate()
         {
-            var groundHit = this.GetCollision();
+            var groundHit = this.GetCollision(this.groundLayer);
             if (groundHit.collider == null)
             {
                 return;
+            }
+
+            var destroyHit = this.GetCollision(this.destroyLayer);
+            if (destroyHit.collider != null)
+            {
+                this.onBallDestroyed.Invoke();
+                Destroy(this.gameObject);
             }
 
 
@@ -72,7 +82,7 @@ namespace Game
             this.transform.localScale += sizeChange;
         }
 
-        RaycastHit2D GetCollision()
+        RaycastHit2D GetCollision(LayerMask mask)
         {
             var playerBounds = this.collider2d.bounds;
             var hit = Physics2D.CircleCast(
@@ -80,7 +90,7 @@ namespace Game
                 radius: this.collider2d.radius + this.collisionRadiusSize,
                 direction: Vector2.down,
                 distance: 1f,
-                layerMask: this.groundLayer);
+                layerMask: mask);
 
             if (hit && this.debug)
             {
@@ -94,7 +104,7 @@ namespace Game
         {
             if (this.debug)
             {
-                var groundHit = this.GetCollision();
+                var groundHit = this.GetCollision(this.groundLayer);
                 var debugged = new List<(string, string)>
             {
                 ( "Hit tag", groundHit.collider != null ? groundHit.collider.tag : "None" ),
