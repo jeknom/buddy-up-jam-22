@@ -274,6 +274,9 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 192
+  dungballLayer:
+    serializedVersion: 2
+    m_Bits: 128
   deathLayers:
     serializedVersion: 2
     m_Bits: 768
@@ -325,3 +328,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementBehaviour: {fileID: 1554881212240947863}
+  deathColor: {r: 1, g: 0, b: 0, a: 1}

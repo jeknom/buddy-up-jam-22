@@ -36,12 +36,18 @@ namespace Game
 
             foreach (var collision in collisions)
             {
-                isPushing = collision.tag == "DungBall" &&
-                    (collision.direction == Vector2.left || collision.direction == Vector2.right);
+                var isCollidingLeftOrRight = collision.direction == Vector2.left || collision.direction == Vector2.right;
+                var newValue = collision.tag == "DungBall" && isCollidingLeftOrRight;
+
+                if (isPushing != newValue)
+                {
+                    isPushing = newValue;
+                    break;
+                }
             }
 
+            this.SetPushing(isGrounded && isPushing);
             this.SetInAir(!isGrounded);
-            this.SetPushing(isPushing);
 
             if (isMovingHorizontally)
             {
@@ -94,8 +100,13 @@ namespace Game
 
         void SetPushing(bool isPushing)
         {
-            this.playerAnimator.SetBool("IsPushing", isPushing);
+            Debug.Log("Animator set pushing " + this.playerAnimator.GetBool("IsPushing"));
+            if (isPushing == this.playerAnimator.GetBool("IsPushing"))
+            {
+                return;
+            }
 
+            this.playerAnimator.SetBool("IsPushing", isPushing);
         }
     }
 }

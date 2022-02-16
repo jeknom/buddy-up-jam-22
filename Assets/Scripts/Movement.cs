@@ -20,6 +20,7 @@ namespace Game
 
         [Header("Setup")]
         [SerializeField] LayerMask groundLayers;
+        [SerializeField] LayerMask dungballLayer;
         [SerializeField] LayerMask deathLayers;
 
         [Header("Modifiers")]
@@ -133,7 +134,7 @@ namespace Game
         List<PlayerCollision> GetCollisions()
         {
             var collisions = new List<PlayerCollision>();
-            var left = this.GetHit(Vector2.left, this.groundLayers);
+            var left = this.GetDungballHit(Vector2.left, this.groundLayers);
             if (left.collider != null)
             {
                 collisions.Add(new PlayerCollision
@@ -143,7 +144,7 @@ namespace Game
                 });
             }
 
-            var right = this.GetHit(Vector2.right, this.groundLayers);
+            var right = this.GetDungballHit(Vector2.right, this.groundLayers);
             if (right.collider != null)
             {
                 collisions.Add(new PlayerCollision
@@ -153,7 +154,7 @@ namespace Game
                 });
             }
 
-            var down = this.GetHit(Vector2.down, this.groundLayers);
+            var down = this.GetBoxHit(Vector2.down, this.groundLayers);
             if (down.collider != null)
             {
                 collisions.Add(new PlayerCollision
@@ -166,7 +167,22 @@ namespace Game
             return collisions;
         }
 
-        RaycastHit2D GetHit(Vector2 dir, LayerMask mask)
+        RaycastHit2D GetDungballHit(Vector2 dir, LayerMask mask)
+        {
+            var playerBounds = this.collider2d.bounds;
+            var hit = Physics2D.BoxCast(
+                playerBounds.center,
+                playerBounds.size,
+                0f,
+                dir,
+                playerBounds.extents.x + 0.1f,
+                this.dungballLayer
+            );
+
+            return hit;
+        }
+
+        RaycastHit2D GetBoxHit(Vector2 dir, LayerMask mask)
         {
             var playerBounds = this.collider2d.bounds;
             var hit = Physics2D.BoxCast(
