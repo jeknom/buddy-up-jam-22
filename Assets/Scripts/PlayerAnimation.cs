@@ -92,7 +92,6 @@ namespace Game
 
         void SetPushing(bool isPushing)
         {
-            Debug.Log("Animator set pushing " + this.playerAnimator.GetBool("IsPushing"));
             if (isPushing == this.playerAnimator.GetBool("IsPushing"))
             {
                 return;
