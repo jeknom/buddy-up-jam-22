@@ -15,6 +15,7 @@ namespace Game
         }
 
         public UnityEvent<List<PlayerCollision>> onUpdateCollisions;
+        public UnityEvent onPlayerDestroy;
         public Vector2 Velocity => this.rb2d.velocity;
 
         [Header("Setup")]
@@ -183,6 +184,15 @@ namespace Game
             if (this.debug)
             {
                 GUI.Label(this.debugPos, new GUIContent($"Is grounded: {IsGrounded(this.currentCollisions)}"));
+            }
+        }
+
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.collider.gameObject.layer == 9)
+            {
+                this.onPlayerDestroy.Invoke();
+                Destroy(this.gameObject);
             }
         }
     }
