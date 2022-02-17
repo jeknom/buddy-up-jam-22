@@ -18,3 +18,5 @@ A game jam that took place on 07.02.2022 - 22.02.2022 and had around 230 partici
 ## Special thanks to
 
 - HiddenMonk at StackOverflow - [BoxCast debugging script comment](https://answers.unity.com/questions/1156087/how-can-you-visualize-a-boxcast-boxcheck-etc.html)
+- SiLena_ART - [Stone UI] (https://assetstore.unity.com/packages/2d/gui/icons/stone-ui-182526)
+- dubpixel . [Pixelart forest pack] (https://dubpixel.itch.io/pixel-art-forest-pack)
