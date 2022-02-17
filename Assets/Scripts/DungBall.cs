@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Game
 {
@@ -22,6 +23,7 @@ namespace Game
         [SerializeField, Range(1f, 100f)] float maxMass = 30f;
         [SerializeField, Range(0.01f, 1f)] float collisionRadiusSize = 0.90f;
         [SerializeField, Range(0.1f, 1f)] float scalingModifier = 0.5f;
+        [SerializeField, Range(0.1f, 5f)] float destroySpeed = 1f;
         [SerializeField] string statusTextPrefix = "Ball mass:";
 
         [Header("Other")]
@@ -31,6 +33,7 @@ namespace Game
 
         CircleCollider2D collider2d;
         Rigidbody2D rb2d;
+        bool isDestroying;
 
         void Awake()
         {
@@ -40,11 +43,17 @@ namespace Game
 
         void FixedUpdate()
         {
+            if (this.isDestroying)
+            {
+                return;
+            }
+
             var deathHit = this.GetCollision(this.destroyLayer);
             if (deathHit.collider != null)
             {
                 this.onBallDestroyed.Invoke();
-                Destroy(this.gameObject);
+                this.isDestroying = true;
+                StartCoroutine(this.DestroyRoutine());
             }
 
             var groundHit = this.GetCollision(this.groundLayer);
@@ -97,6 +106,18 @@ namespace Game
             }
 
             return hit;
+        }
+
+        IEnumerator DestroyRoutine()
+        {
+            while (this.transform.localScale.x > 0f)
+            {
+                this.transform.localScale -= new Vector3(this.destroySpeed, this.destroySpeed, 0f) * Time.deltaTime;
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            Destroy(this.gameObject);
         }
 
         void OnGUI()
