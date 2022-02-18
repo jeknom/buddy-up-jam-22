@@ -472,6 +472,7 @@ MonoBehaviour:
   maxMass: 20
   collisionRadiusSize: 1
   scalingModifier: 0.5
+  statusTextPrefix: 'Ball mass:'
   debug: 1
   debugPos:
     serializedVersion: 2

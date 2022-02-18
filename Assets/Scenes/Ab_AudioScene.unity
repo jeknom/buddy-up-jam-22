@@ -13931,17 +13931,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1554881212240947865, guid: b403fdc4fdd37364f84b0535d50031da, type: 3}
   m_PrefabInstance: {fileID: 1554881211130484047}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1173297664 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5329556226814809004, guid: b403fdc4fdd37364f84b0535d50031da, type: 3}
-  m_PrefabInstance: {fileID: 1554881211130484047}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2acf5c3e9b73d4b4b8a255e6ff300c24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1392712673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5771337051693031261, guid: a25e0a83146e15d458f00d0c102c8f99, type: 3}
@@ -13979,7 +13968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: BallRolling
-    clip: {fileID: 8300000, guid: 2e84743e1e8a5834fa18a6a7b03955a3, type: 3}
+    clip: {fileID: 8300000, guid: e93461727f117fa49838919240fe12ba, type: 3}
     output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
     volume: 0.596
     pitch: 1
@@ -14208,7 +14197,7 @@ PrefabInstance:
     - target: {fileID: 5771337051693031262, guid: a25e0a83146e15d458f00d0c102c8f99, type: 3}
       propertyPath: effectBehaviour
       value: 
-      objectReference: {fileID: 1173297664}
+      objectReference: {fileID: 0}
     - target: {fileID: 5771337051693031267, guid: a25e0a83146e15d458f00d0c102c8f99, type: 3}
       propertyPath: m_Name
       value: VignetteCloser
