@@ -1019,6 +1019,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5771337051693031262, guid: a25e0a83146e15d458f00d0c102c8f99, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1528036343}
+    - target: {fileID: 5771337051693031262, guid: a25e0a83146e15d458f00d0c102c8f99, type: 3}
       propertyPath: effectBehaviour
       value: 
       objectReference: {fileID: 513217283}
@@ -4176,6 +4180,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea5691689f089604cb0a854b09d0dd19, type: 3}
+--- !u!114 &1528036343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1667282946688766719, guid: ea5691689f089604cb0a854b09d0dd19, type: 3}
+  m_PrefabInstance: {fileID: 1528036342}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d158180acc3fe744c96fec83b8b389de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1850440634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5494538664309751690, guid: da3afb89233013540a0a3d1ebb41a91c, type: 3}
