@@ -74,6 +74,11 @@ namespace Game
             {
                 sizeModifier = -sizeModifier;
             }
+            // If tag is not either grower or shrinker we exit
+            else if (hitTag != GROWER_TAG)
+            {
+                return;
+            }
 
             var currentScale = this.transform.localScale.x;
             if ((sizeModifier > 0f && currentScale >= this.maxSize) ||
