@@ -10,13 +10,12 @@ namespace Game
 
     public class GameManager : MonoBehaviour
     {
-
-
         [SerializeField] AudioClip deathSound;
         [SerializeField] AudioSource mainAudioSource;
+
         public AudioMixer mainMixer;
         private float volume;
-        // Start is called before the first frame update
+
         void Start()
         {
             DontDestroyOnLoad(transform.gameObject);
@@ -25,13 +24,6 @@ namespace Game
             mainMixer.SetFloat("MainVolume", volume);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-
         public void NextLevel()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -39,22 +31,10 @@ namespace Game
 
         public void Death()
         {
-            StartCoroutine(WaitForDeath());
-
-        }
-
-
-        IEnumerator WaitForDeath()
-        {
-
-            GameObject.Find("VignetteEffect").GetComponent<VignetteEffect>().CloseVignette();
+            GameObject.FindObjectOfType<VignetteEffect>().CloseVignette();
             mainAudioSource.PlayOneShot(deathSound);
-            yield return new WaitForSeconds(3);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Destroy(this.gameObject);
+            GameObject.FindObjectOfType<VignetteManager>().onVignetteClosed.AddListener(() =>
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
         }
-
-
     }
-
 }

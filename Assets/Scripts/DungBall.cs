@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -120,6 +121,8 @@ namespace Game
 
                 yield return new WaitForEndOfFrame();
             }
+
+            GameObject.FindObjectOfType<GameManager>().Death();
 
             Destroy(this.gameObject);
         }
