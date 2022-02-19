@@ -5276,9 +5276,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxSize: 3
-  minSize: 1
+  minSize: 0.9
   maxMass: 20
-  collisionRadiusSize: 1
+  collisionRayLength: 0.2
   scalingModifier: 0.5
   destroySpeed: 2
   statusTextPrefix: 'Ball mass:'
