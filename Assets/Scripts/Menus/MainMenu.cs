@@ -20,14 +20,15 @@ namespace Game
         public AudioMixer mainMixer;
         private float volume;
         [SerializeField, Range(0.1f, 10f)] float amountToScaleEachTick = 0.1f;
-        [SerializeField] GameObject mask;
+        [SerializeField] Animator vignette;
 
-        void start()
+        void Start()
         {
+            vignette.SetTrigger("Main");
             volume = PlayerPrefs.GetFloat("volume");
             volSlider.value = volume;
             mainMixer.SetFloat("MainVolume", volume);
-          
+
         }
 
         void FixedUpdate()
@@ -37,27 +38,18 @@ namespace Game
 
         public void StartGame()
         {
-            mainMenu.SetActive(false);
             StartCoroutine(this.StartVignette());
-            
+
         }
 
-            public IEnumerator StartVignette()
+        public IEnumerator StartVignette()
         {
+            GameObject.Find("VignetteEffect").transform.SetAsLastSibling();
+            GameObject.Find("VignetteEffect").GetComponent<VignetteEffect>().CloseVignette();
+            yield return new WaitForSeconds(2.1f);
 
 
-            while (mask.transform.localScale.x > 0f)
-            {
-                var scaler = this.amountToScaleEachTick * Time.deltaTime;
-                mask.transform.localScale -= new Vector3(scaler, scaler, 0f);
-
-                yield return new WaitForFixedUpdate();
-            }
-            mask.transform.localScale = new Vector3(0f, 0f, 0f);
-            yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-
         }
 
         public void Settings()

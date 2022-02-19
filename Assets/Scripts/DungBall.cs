@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace Game
 {
@@ -13,6 +15,7 @@ namespace Game
 
         [Header("Setup")]
         [SerializeField] LayerMask groundLayer;
+        [SerializeField] LayerMask destroyLayer;
 
         [Header("Modifiers")]
         [SerializeField, Range(1f, 10f)] float maxSize = 10f;
@@ -20,14 +23,17 @@ namespace Game
         [SerializeField, Range(1f, 100f)] float maxMass = 30f;
         [SerializeField, Range(0.01f, 1f)] float collisionRadiusSize = 0.90f;
         [SerializeField, Range(0.1f, 1f)] float scalingModifier = 0.5f;
+        [SerializeField, Range(0.1f, 5f)] float destroySpeed = 1f;
         [SerializeField] string statusTextPrefix = "Ball mass:";
 
         [Header("Other")]
         [SerializeField] bool debug;
         [SerializeField] Rect debugPos = new Rect(new Vector2(0f, 0f), new Vector2(500f, 30f));
+        public UnityEvent onBallDestroyed;
 
         CircleCollider2D collider2d;
         Rigidbody2D rb2d;
+        bool isDestroying;
 
         void Awake()
         {
@@ -37,12 +43,24 @@ namespace Game
 
         void FixedUpdate()
         {
-            var groundHit = this.GetCollision();
-            if (groundHit.collider == null)
+            if (this.isDestroying)
             {
                 return;
             }
 
+            var deathHit = this.GetCollision(this.destroyLayer);
+            if (deathHit.collider != null)
+            {
+                this.onBallDestroyed.Invoke();
+                this.isDestroying = true;
+                StartCoroutine(this.DestroyRoutine());
+            }
+
+            var groundHit = this.GetCollision(this.groundLayer);
+            if (groundHit.collider == null)
+            {
+                return;
+            }
 
             var verticalVelocity = Mathf.Abs(this.rb2d.velocity.x);
             if (verticalVelocity <= 0f)
@@ -72,7 +90,7 @@ namespace Game
             this.transform.localScale += sizeChange;
         }
 
-        RaycastHit2D GetCollision()
+        RaycastHit2D GetCollision(LayerMask mask)
         {
             var playerBounds = this.collider2d.bounds;
             var hit = Physics2D.CircleCast(
@@ -80,7 +98,7 @@ namespace Game
                 radius: this.collider2d.radius + this.collisionRadiusSize,
                 direction: Vector2.down,
                 distance: 1f,
-                layerMask: this.groundLayer);
+                layerMask: mask);
 
             if (hit && this.debug)
             {
@@ -90,11 +108,23 @@ namespace Game
             return hit;
         }
 
+        IEnumerator DestroyRoutine()
+        {
+            while (this.transform.localScale.x > 0f)
+            {
+                this.transform.localScale -= new Vector3(this.destroySpeed, this.destroySpeed, 0f) * Time.deltaTime;
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            Destroy(this.gameObject);
+        }
+
         void OnGUI()
         {
             if (this.debug)
             {
-                var groundHit = this.GetCollision();
+                var groundHit = this.GetCollision(this.groundLayer);
                 var debugged = new List<(string, string)>
             {
                 ( "Hit tag", groundHit.collider != null ? groundHit.collider.tag : "None" ),
@@ -123,5 +153,4 @@ namespace Game
             return rect;
         }
     }
-
 }
