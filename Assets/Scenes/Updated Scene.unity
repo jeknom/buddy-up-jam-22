@@ -19686,14 +19686,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8650911182227215740, guid: b403fdc4fdd37364f84b0535d50031da, type: 3}
-      propertyPath: m_AssetsPPU
-      value: 163
-      objectReference: {fileID: 0}
-    - target: {fileID: 8650911182227215740, guid: b403fdc4fdd37364f84b0535d50031da, type: 3}
-      propertyPath: m_UpscaleRT
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8650911182227215740, guid: b403fdc4fdd37364f84b0535d50031da, type: 3}
       propertyPath: m_RefResolutionX
       value: 1920
       objectReference: {fileID: 0}
