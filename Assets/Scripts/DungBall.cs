@@ -30,6 +30,7 @@ namespace Game
         [SerializeField] bool debug;
         [SerializeField] Rect debugPos = new Rect(new Vector2(0f, 0f), new Vector2(500f, 30f));
         public UnityEvent onBallDestroyed;
+        public bool IsBallGrounded() => this.GetCollision(this.groundLayer);
 
         CircleCollider2D collider2d;
         Rigidbody2D rb2d;
