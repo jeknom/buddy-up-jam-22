@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic;
+using Game;
 
 public class DungBall_Audio : MonoBehaviour
 {
@@ -18,17 +18,20 @@ public class DungBall_Audio : MonoBehaviour
     private Rigidbody2D rb2d;
     private AudioManager AudioManager;
     private MixerManager MixerManager;
+    private DungBall DungBall;
     private float currentVelocity;
+    private float currentVerticalVelocity;
     private string currentCollision;
     private string currentRollingSound = "BallRolling";
-    private const float muteVolume = -80.0f; 
-
+    private const float muteVolume = -80.0f;
+    private bool canBounce = true;
 
     void Awake()
     {
         this.rb2d = this.GetComponent<Rigidbody2D>();
         AudioManager = goAudioManager.GetComponent<AudioManager>();
         MixerManager = goAudioManager.GetComponent<MixerManager>();
+        DungBall = GameObject.Find("DungBall").GetComponent<DungBall>();
     }
 
     private void Start()
@@ -43,7 +46,6 @@ public class DungBall_Audio : MonoBehaviour
     private void Update()
     {
         currentVelocity = Mathf.Abs(rb2d.velocity.x);
-
         SetPitchWithVelocity();
         SetVolumeWithVelocity();
         SetEQWithSize();
@@ -51,13 +53,20 @@ public class DungBall_Audio : MonoBehaviour
 
     //Plays the appropriate sound depending on the ground type
     private void OnCollisionEnter2D(Collision2D collision)
-    {        
+    {
         string collisionTag = collision.gameObject.tag;
-        if (collisionTag != currentCollision)
+
+        if (!DungBall.IsBallGrounded())
+        {
+            MuteAllRollingSounds();
+            canBounce = true;
+        }
+        else if (collisionTag != currentCollision)
         {
             switch (collisionTag)
             {
                 case "Grower":
+                    PlayBounceSound("BallBouncingMud");
                     MixerManager.SetVolume(currentRollingSound, muteVolume);
                     MixerManager.SetVolume("BallRollingMud", 0);
                     currentCollision = collisionTag;
@@ -65,23 +74,29 @@ public class DungBall_Audio : MonoBehaviour
                     break;
 
                 case "Shrinker":
+                    PlayBounceSound("BallBouncingGrass");
                     MixerManager.SetVolume(currentRollingSound, muteVolume);
                     MixerManager.SetVolume("BallRollingGrass", 0);
                     currentCollision = collisionTag;
                     currentRollingSound = "BallRollingGrass";
                     break;
 
-                default:
+                case "Normal":
+                    PlayBounceSound("BallBouncing");
+                    MixerManager.SetVolume(currentRollingSound, muteVolume);
+                    MixerManager.SetVolume("BallRolling", 0);
+                    currentCollision = collisionTag;
+                    currentRollingSound = "BallRolling";
                     break;
-            }            
-        }
-        
-    }
 
-    //Stops making sounds if the ball doesn't touch anything
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        MuteAllRollingSounds();
+                default:
+                    PlayBounceSound("BallBouncing");
+                    MixerManager.SetVolume(currentRollingSound, 0);
+                    break;
+            }
+        }
+
+
     }
 
     private void SetPitchWithVelocity()
@@ -123,5 +138,15 @@ public class DungBall_Audio : MonoBehaviour
         AudioManager.Play("BallRolling");
         AudioManager.Play("BallRollingMud");
         AudioManager.Play("BallRollingGrass");
+    }
+
+    private void PlayBounceSound(string sound)
+    {  
+        if (canBounce)
+        {
+            AudioManager.Play(sound);
+            canBounce = false;
+            //Debug.Log("Bounce");
+        }                 
     }
 }
