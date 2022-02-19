@@ -19,7 +19,7 @@ namespace Game
 
         [Header("Modifiers")]
         [SerializeField, Range(1f, 10f)] float maxSize = 10f;
-        [SerializeField, Range(1f, 10f)] float minSize = 1f;
+        [SerializeField, Range(0.9f, 10f)] float minSize = 0.9f;
         [SerializeField, Range(1f, 100f)] float maxMass = 30f;
         [SerializeField, Range(0.01f, 1f)] float collisionRadiusSize = 0.90f;
         [SerializeField, Range(0.1f, 1f)] float scalingModifier = 0.5f;
