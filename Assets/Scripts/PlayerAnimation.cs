@@ -61,7 +61,6 @@ namespace Game
 
         void Flip()
         {
-            Debug.Log("Flipping");
             this.playerRenderer.flipX = !this.playerRenderer.flipX;
         }
 
