@@ -21,7 +21,7 @@ namespace Game
         [SerializeField, Range(1f, 10f)] float maxSize = 10f;
         [SerializeField, Range(1f, 10f)] float minSize = 1f;
         [SerializeField, Range(1f, 100f)] float maxMass = 30f;
-        [SerializeField, Range(0.01f, 1f)] float collisionRadiusSize = 0.90f;
+        [SerializeField, Range(0.01f, 1f)] float collisionRayLength = 0.2f;
         [SerializeField, Range(0.1f, 1f)] float scalingModifier = 0.5f;
         [SerializeField, Range(0.1f, 5f)] float destroySpeed = 1f;
         [SerializeField] string statusTextPrefix = "Ball mass:";
@@ -98,12 +98,10 @@ namespace Game
         RaycastHit2D GetCollision(LayerMask mask)
         {
             var playerBounds = this.collider2d.bounds;
-            var hit = Physics2D.CircleCast(
-                origin: playerBounds.center,
-                radius: this.collider2d.radius + this.collisionRadiusSize,
-                direction: Vector2.down,
-                distance: 1f,
-                layerMask: mask);
+            var hit = Physics2D.Raycast(this.collider2d.bounds.center,
+            Vector2.down,
+            this.collider2d.bounds.extents.x + this.collisionRayLength,
+            mask);
 
             if (hit && this.debug)
             {
