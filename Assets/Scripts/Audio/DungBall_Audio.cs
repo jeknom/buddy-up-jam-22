@@ -19,6 +19,9 @@ public class DungBall_Audio : MonoBehaviour
     private AudioManager AudioManager;
     private MixerManager MixerManager;
     private float currentVelocity;
+    private string currentCollision;
+    private string currentRollingSound = "BallRolling";
+    private const float muteVolume = -80.0f; 
 
 
     void Awake()
@@ -30,7 +33,10 @@ public class DungBall_Audio : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Play("BallRolling"); 
+        //We need to play all the rolling sounds at the same time on loop and mute them because otherwise blank noise happens when playing/stopping a looping sound for another       
+        MuteAllRollingSounds();
+        PlayAllRollingSounds();
+        currentRollingSound = "BallRolling";
     }
 
 
@@ -41,20 +47,59 @@ public class DungBall_Audio : MonoBehaviour
         SetPitchWithVelocity();
         SetVolumeWithVelocity();
         SetEQWithSize();
-    }   
-  
+    }
+
+    //Plays the appropriate sound depending on the ground type
+    private void OnCollisionEnter2D(Collision2D collision)
+    {        
+        string collisionTag = collision.gameObject.tag;
+        if (collisionTag != currentCollision)
+        {
+            switch (collisionTag)
+            {
+                case "Grower":
+                    MixerManager.SetVolume(currentRollingSound, muteVolume);
+                    MixerManager.SetVolume("BallRollingMud", 0);
+                    currentCollision = collisionTag;
+                    currentRollingSound = "BallRollingMud";
+                    break;
+
+                case "Shrinker":
+                    MixerManager.SetVolume(currentRollingSound, muteVolume);
+                    MixerManager.SetVolume("BallRollingGrass", 0);
+                    currentCollision = collisionTag;
+                    currentRollingSound = "BallRollingGrass";
+                    break;
+
+                default:
+                    break;
+            }            
+        }
+        
+    }
+
+    //Stops making sounds if the ball doesn't touch anything
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        MuteAllRollingSounds();
+    }
+
     private void SetPitchWithVelocity()
     {
-        float t = Mathf.InverseLerp(minPitchVel, maxPitchVel, currentVelocity);
-        float rollingPitch = Mathf.Lerp(minPitch, maxPitch, t);
-        AudioManager.SetPitch("BallRolling", rollingPitch);
+        if (currentRollingSound != "BallRollingGrass")
+        {
+            float t = Mathf.InverseLerp(minPitchVel, maxPitchVel, currentVelocity);
+            float rollingPitch = Mathf.Lerp(minPitch, maxPitch, t);
+            AudioManager.SetPitch(currentRollingSound, rollingPitch);
+        }
+       
     }
 
     private void SetVolumeWithVelocity()
     {
         float t = Mathf.InverseLerp(minVolumeVel, maxVolumeVel, currentVelocity);
         float rollingVolume = Mathf.Lerp(0, maxVolume, t);
-        AudioManager.SetVolume("BallRolling", rollingVolume);
+        AudioManager.SetVolume(currentRollingSound, rollingVolume);
     }
 
     private void SetEQWithSize()
@@ -64,5 +109,19 @@ public class DungBall_Audio : MonoBehaviour
         float eqGain = Mathf.Lerp(minEQGain, maxEQGain, t);
         MixerManager.SetEQ(eqGain);
         //Debug.Log("scale = " + this.transform.localScale.x + "eqGain = " + eqGain + "t = " + t);
+    }
+
+    private void MuteAllRollingSounds()
+    {
+        MixerManager.SetVolume("BallRolling", muteVolume);
+        MixerManager.SetVolume("BallRollingMud", muteVolume);
+        MixerManager.SetVolume("BallRollingGrass", muteVolume);
+    }
+
+    private void PlayAllRollingSounds()
+    {
+        AudioManager.Play("BallRolling");
+        AudioManager.Play("BallRollingMud");
+        AudioManager.Play("BallRollingGrass");
     }
 }

@@ -10,4 +10,10 @@ public class MixerManager : MonoBehaviour
         masterMixer.SetFloat("FrequencyGain", gain);
     }
 
+    public void SetVolume(string whichSound, float volume)
+    {
+        string floatToSet = whichSound + "Volume";
+        masterMixer.SetFloat(floatToSet, volume);
+    }
+
 }

@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-6052920567000872287
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: a975973073fee7f48ac3ce36d34efb9d
+  m_EffectName: Attenuation
+  m_MixLevel: bb65b84fd3a368b468d3532ef5d221a3
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-4779659797105133682
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -37,6 +51,39 @@ AudioMixerSnapshotController:
     656b5d1bf8851b8448a2d959c701613c: 189
     528847dc36143774baf6f8663a655ec4: 398
   m_TransitionOverrides: {}
+--- !u!244 &-1851083769569583700
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 8d496010dd185c541a2242a3a6b29fa9
+  m_EffectName: Attenuation
+  m_MixLevel: 3cf1421d6adb9ae4e8e7e4cd0d170724
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-1045864993348236872
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BallRollingMud
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 886c33835c269ee4591c527245e609ef
+  m_Children: []
+  m_Volume: 11b85108321ab364da53096fcd8c9dda
+  m_Pitch: 946a818459f739448babef92a28dd887
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 3713281700383230171}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -54,6 +101,12 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: 79f89aa6423d63e4687a1008c70cd974
+    name: BallRollingVolume
+  - guid: f37d6d76dd1f0e248b1c4e7d6a860558
+    name: BallRollingGrassVolume
+  - guid: 11b85108321ab364da53096fcd8c9dda
+    name: BallRollingMudVolume
   - guid: 19cdd28feab0c25409184afb99a07e73
     name: FrequencyGain
   - guid: 1680109d66e4a434faae386164d0c3b1
@@ -62,6 +115,9 @@ AudioMixerController:
   - guids:
     - 24749915ca047bd48a1751d4c27cc0c7
     - 890d3d7f1a346d54a99bf628db2c7509
+    - f907b2ce7b734a946a85dbcfdf8cda67
+    - 886c33835c269ee4591c527245e609ef
+    - c7887f32d1007b34baaca02530448785
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -113,12 +169,65 @@ AudioMixerSnapshotController:
     69b270c4ed180a14dbd8bab4003a3186: 29
     8ae908453a9805f48b1f4f169a59db1c: 1
     78e58a06a7a51234d9ca3b0e9b09c80e: 1
+    f37d6d76dd1f0e248b1c4e7d6a860558: -80
     1d3fb0274240a8d4ca0d1b9505443ad4: 2.2
     f4ccdf988f5f77a4ea98c6ea987b1d2d: 20.868973
     656b5d1bf8851b8448a2d959c701613c: 189
     528847dc36143774baf6f8663a655ec4: 398
     19cdd28feab0c25409184afb99a07e73: 1
   m_TransitionOverrides: {}
+--- !u!243 &3669874544646714369
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BallRolling
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: f907b2ce7b734a946a85dbcfdf8cda67
+  m_Children: []
+  m_Volume: 79f89aa6423d63e4687a1008c70cd974
+  m_Pitch: 0c34dad52517f474bb3c65633ac44678
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -1851083769569583700}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &3713281700383230171
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: e1009c0dcc1d2e745aeb8c755bde11b7
+  m_EffectName: Attenuation
+  m_MixLevel: 6a8132e23a9bed149a7d30bf3128ab7e
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &4274399477814362227
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BallRollingGrass
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: c7887f32d1007b34baaca02530448785
+  m_Children: []
+  m_Volume: f37d6d76dd1f0e248b1c4e7d6a860558
+  m_Pitch: 7022d5735f2fbf5498bda93342464ee9
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -6052920567000872287}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &5500414658429483164
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -128,7 +237,10 @@ AudioMixerGroupController:
   m_Name: Dung Ball
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 890d3d7f1a346d54a99bf628db2c7509
-  m_Children: []
+  m_Children:
+  - {fileID: 4274399477814362227}
+  - {fileID: 3669874544646714369}
+  - {fileID: -1045864993348236872}
   m_Volume: c63b1b4c1245bb341b85f243457a7f6d
   m_Pitch: 78e58a06a7a51234d9ca3b0e9b09c80e
   m_Send: 00000000000000000000000000000000

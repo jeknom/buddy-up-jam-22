@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void Play(string name)
-    {        
+    {
         FindSound(name).source.Play();
     }
 
@@ -52,6 +52,21 @@ public class AudioManager : MonoBehaviour
     public void SetPitch(string name, float pitch)
     {
         FindSound(name).source.pitch = pitch;
+    }
+
+    public void Stop(string name)
+    {
+        FindSound(name).source.Stop();
+    }
+
+    public void Pause(string name)
+    {
+        FindSound(name).source.Pause();
+    }
+
+    public void UnPause(string name)
+    {
+        FindSound(name).source.UnPause();
     }
 
     private Sound FindSound(string name)
