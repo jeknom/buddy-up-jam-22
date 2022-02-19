@@ -8,7 +8,6 @@ public class MixerManager : MonoBehaviour
     public void SetEQ(float gain)
     {
         masterMixer.SetFloat("FrequencyGain", gain);
-        Debug.Log("gain = " + gain);
     }
 
 }

@@ -9,9 +9,9 @@ public class DungBall_Audio : MonoBehaviour
     [SerializeField] [Range(0, 3)] private float maxPitch = 1.5f;
     [SerializeField] [Range(0, 3)] private float minVolumeVel = 0.3f;
     [SerializeField] [Range(0, 3)] private float maxVolumeVel = 1.0f;
-    [SerializeField] [Range(0, 1)] private float maxVolume = 0.5f;
+    [SerializeField] [Range(0, 1)] private float maxVolume = 1.0f;
     [SerializeField] [Range(0.05f, 3)] private float minEQGain = 0.4f;
-    [SerializeField] [Range(0.05f, 3)] private float maxEQGain = 1.5f;
+    [SerializeField] [Range(0.05f, 3)] private float maxEQGain = 2f;
     [SerializeField] [Range(0.1f, 3)] private float minEQScale = 0.9f;
     [SerializeField] [Range(0.1f, 3)] private float maxEQScale = 3f;
     [SerializeField] private GameObject goAudioManager; 
