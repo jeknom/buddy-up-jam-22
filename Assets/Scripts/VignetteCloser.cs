@@ -21,13 +21,14 @@ namespace Game
                 Debug.Log("Effect behaviour missing");
             }
 
-            manager.onVignetteClosed.AddListener(() => GameObject.FindObjectOfType<GameManager>().NextLevel());
+            
         }
 
         void OnTriggerEnter2D(Collider2D collider)
         {
             if (collider.tag == "Player")
             {
+                manager.onVignetteClosed.AddListener(() => GameObject.FindObjectOfType<GameManager>().NextLevel());
                 this.effectBehaviour.CloseVignette();
             }
         }

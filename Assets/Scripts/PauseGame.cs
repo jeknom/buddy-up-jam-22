@@ -93,9 +93,10 @@ namespace Game
             pauseMenuCanvas.SetActive(false);
             GameObject.Find("VignetteEffect").GetComponent<VignetteEffect>().CloseVignette();
             UIaudioSource.PlayOneShot(mainMenuClip);
-            yield return new WaitForSeconds(3);
-            Destroy(gameObject);
+            yield return new WaitForSeconds(2.5f);
             SceneManager.LoadScene("MainMenu");
+            Destroy(gameObject);
+            
 
 
         }
