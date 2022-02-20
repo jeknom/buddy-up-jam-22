@@ -2773,15 +2773,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2718859996592137811, guid: e44123f846a4adc45a3ee9ea45d1667f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.81
+      value: 13.37
       objectReference: {fileID: 0}
     - target: {fileID: 2718859996592137811, guid: e44123f846a4adc45a3ee9ea45d1667f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.53
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 2718859996592137811, guid: e44123f846a4adc45a3ee9ea45d1667f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2718859996592137811, guid: e44123f846a4adc45a3ee9ea45d1667f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2839,7 +2839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4734902596679869178, guid: 8fc7ddefe873a4943a76a7635a89da52, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.97358
+      value: 3.961659
       objectReference: {fileID: 0}
     - target: {fileID: 4734902596679869178, guid: 8fc7ddefe873a4943a76a7635a89da52, type: 3}
       propertyPath: m_LocalScale.y
@@ -2847,11 +2847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4734902596679869178, guid: 8fc7ddefe873a4943a76a7635a89da52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.75572
+      value: 13.37
       objectReference: {fileID: 0}
     - target: {fileID: 4734902596679869178, guid: 8fc7ddefe873a4943a76a7635a89da52, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.29
+      value: -0.53
       objectReference: {fileID: 0}
     - target: {fileID: 4734902596679869178, guid: 8fc7ddefe873a4943a76a7635a89da52, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3234,6 +3234,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 203198782}
     m_Modifications:
+    - target: {fileID: 2718859996592137808, guid: e44123f846a4adc45a3ee9ea45d1667f, type: 3}
+      propertyPath: m_Text
+      value: Move and push the ball with
+      objectReference: {fileID: 0}
     - target: {fileID: 2718859996592137810, guid: e44123f846a4adc45a3ee9ea45d1667f, type: 3}
       propertyPath: m_Name
       value: TutorialText
