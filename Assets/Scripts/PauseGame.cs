@@ -80,25 +80,18 @@ namespace Game
         public void Main()
         {
 
-            StartCoroutine(WaitForClipMenu());
-
-
-
-        }
-
-
-        IEnumerator WaitForClipMenu()
-        {
+           
+            UIaudioSource.PlayOneShot(mainMenuClip);
+            GameObject.Find("StatusManger").GetComponent<VignetteManager>().onVignetteClosed.AddListener(() => SceneManager.LoadScene("MainMenu"));
+            GameObject.Find("StatusManger").GetComponent<VignetteManager>().onVignetteClosed.AddListener(() => Destroy(gameObject));
             Time.timeScale = 1;
             pauseMenuCanvas.SetActive(false);
             GameObject.Find("VignetteEffect").GetComponent<VignetteEffect>().CloseVignette();
-            UIaudioSource.PlayOneShot(mainMenuClip);
-            yield return new WaitForSeconds(3);
-            Destroy(gameObject);
-            SceneManager.LoadScene("MainMenu");
-
-
+            
+            
         }
+
+
 
 
 
