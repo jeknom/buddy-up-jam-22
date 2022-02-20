@@ -51,6 +51,7 @@ MonoBehaviour:
     volume: 0.3
     pitch: 1
     loop: 1
+    spatialBlend: 0
     source: {fileID: 0}
   - name: BallRolling
     clip: {fileID: 8300000, guid: 8e63ceb3e0570d846810a396b40b3cd1, type: 3}
@@ -58,6 +59,7 @@ MonoBehaviour:
     volume: 0.7
     pitch: 1
     loop: 1
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallRollingGrass
     clip: {fileID: 8300000, guid: a4629f0bc01a90148a05852f07f41de9, type: 3}
@@ -65,6 +67,7 @@ MonoBehaviour:
     volume: 0.7
     pitch: 1
     loop: 1
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallRollingMud
     clip: {fileID: 8300000, guid: ccf54007a03a45f4ab156b94fa0d0b54, type: 3}
@@ -72,6 +75,7 @@ MonoBehaviour:
     volume: 0.7
     pitch: 1
     loop: 1
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallBouncing
     clip: {fileID: 8300000, guid: b3538028ef6902b44a5a53230a198b8f, type: 3}
@@ -79,6 +83,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallBouncingGrass
     clip: {fileID: 8300000, guid: 49aa6ed37e29e974d95727ac973ff83d, type: 3}
@@ -86,6 +91,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
   - name: BallBouncingMud
     clip: {fileID: 8300000, guid: 9cee9c5e3bbc59143aa57e9b2d51f1ca, type: 3}
@@ -93,6 +99,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallBouncingLava
     clip: {fileID: 8300000, guid: bb3857e8bdeacd247979c7b169a29497, type: 3}
@@ -100,6 +107,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallBouncingWater
     clip: {fileID: 8300000, guid: c33f17511e23a494baa7cc6e8d660224, type: 3}
@@ -107,6 +115,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallBouncingWater
     clip: {fileID: 8300000, guid: c33f17511e23a494baa7cc6e8d660224, type: 3}
@@ -114,6 +123,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: BallDestroy
     clip: {fileID: 8300000, guid: fcb2cc0da071c024a996ef030260bc47, type: 3}
@@ -121,6 +131,7 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    spatialBlend: 1
     source: {fileID: 0}
   - name: Footsteps
     clip: {fileID: 8300000, guid: d1304c33fdb838f418c9d999773b4f0b, type: 3}
@@ -128,6 +139,7 @@ MonoBehaviour:
     volume: 0.4
     pitch: 1
     loop: 1
+    spatialBlend: 0
     source: {fileID: 0}
   - name: FootstepsMud
     clip: {fileID: 8300000, guid: 30905a8676d550f499dfcd1fb0c2f503, type: 3}
@@ -135,6 +147,7 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 1
+    spatialBlend: 0.5
     source: {fileID: 0}
   - name: FootstepsGrass
     clip: {fileID: 8300000, guid: 8f4ccc7e2d49183468367b78254a79ed, type: 3}
@@ -142,6 +155,55 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 1
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerLanding
+    clip: {fileID: 8300000, guid: 4e941d86497115444a128d52bf8d90a8, type: 3}
+    output: {fileID: -8512660869295563633, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerLandingGrass
+    clip: {fileID: 8300000, guid: 6e3ed65c80f43bf4183f606df6d68b5e, type: 3}
+    output: {fileID: -8512660869295563633, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerLandingMud
+    clip: {fileID: 8300000, guid: c8178e986328e82418bf83b21d7cd521, type: 3}
+    output: {fileID: -8512660869295563633, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: PlayerLandingWater
+    clip: {fileID: 8300000, guid: f8f119c84fcf2ad4abfa67979d3c6167, type: 3}
+    output: {fileID: -8512660869295563633, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: b4e4c01229114c346b2a92f11462c125, type: 3}
+    output: {fileID: 8015530987797903530, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.2
+    pitch: 1.2
+    loop: 0
+    spatialBlend: 0
+    source: {fileID: 0}
+  - name: LevelClear
+    clip: {fileID: 8300000, guid: add9515a470463940af064e3d82c3431, type: 3}
+    output: {fileID: 24300002, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    spatialBlend: 0
     source: {fileID: 0}
 --- !u!114 &239783386542062417
 MonoBehaviour:
