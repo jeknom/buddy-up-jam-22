@@ -24,6 +24,11 @@ namespace Game
             mainMixer.SetFloat("MainVolume", volume);
         }
 
+        void Update()
+        {
+            volume = PlayerPrefs.GetFloat("volume");
+        }
+
         public void NextLevel()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
