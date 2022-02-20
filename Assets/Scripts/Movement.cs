@@ -208,8 +208,10 @@ namespace Game
         {
             if (this.deathLayers == (this.deathLayers | (1 << other.collider.gameObject.layer)))
             {
+                
                 var gameManager = GameObject.FindObjectOfType<GameManager>();
                 this.onPlayerDestroy.Invoke();
+                HandleJump();
                 gameManager.Death();
             }
         }
