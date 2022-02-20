@@ -17,6 +17,8 @@ public class Sound
     public float pitch;
 
     public bool loop;
+    [Range(0.0f, 1.0f)]
+    public float spatialBlend;
 
     [HideInInspector]
     public AudioSource source;

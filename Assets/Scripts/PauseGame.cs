@@ -26,9 +26,19 @@ namespace Game
 
         private bool isPaused = false;
 
+        //Ab - Needed to pause the audio
+        private GameObject goAudioManager;
+        private MixerManager MixerManager;
+        private AudioManager AudioManager;
+
         // Start is called before the first frame update
         void Start()
         {
+            //Ab - audio
+            goAudioManager = GameObject.Find("AudioManager");
+            MixerManager = goAudioManager.GetComponent<MixerManager>();
+            AudioManager = goAudioManager.GetComponent<AudioManager>();
+
             volume = PlayerPrefs.GetFloat("volume");
             volSlider.value = volume;
             mainMixer.SetFloat("MainVolume", volume);
@@ -59,11 +69,15 @@ namespace Game
                 Time.timeScale = 0;
                 UIaudioSource.PlayOneShot(pauseIn);
 
+                MuteAllSounds(); //Ab
+
             }
             else
             {
                 UIaudioSource.PlayOneShot(pauseOut);
                 Time.timeScale = 1;
+
+                UnMuteAllSounds(); //Ab
             }
 
 
@@ -117,6 +131,17 @@ namespace Game
         }
 
 
+        //Ab - audio
+        public void MuteAllSounds()
+        {
+            MixerManager.SetVolume("Sounds", -80.0f); 
+        }
+
+        //Ab - audio
+        public void UnMuteAllSounds()
+        {
+            MixerManager.SetVolume("Sounds", 0.0f); 
+        }
     }
 
 }

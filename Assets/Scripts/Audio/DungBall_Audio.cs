@@ -168,4 +168,9 @@ public class DungBall_Audio : MonoBehaviour
             canBounce = false;
         }                 
     }
+
+    public void PlayDestroySound()
+    {
+        AudioManager.Play("BallDestroy");
+    }
 }

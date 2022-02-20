@@ -18,7 +18,7 @@ public class PlayerSounds : MonoBehaviour
     private string currentCollision;
     private bool isMute;
     private float horizontalInput;
-    //private float verticalInput;
+    private bool jumpInput;
 
     private void Awake()
     {
@@ -51,7 +51,11 @@ public class PlayerSounds : MonoBehaviour
             isMute = false;
         }
 
-        //verticalInput = Input.GetAxisRaw("Vertical");
+        jumpInput = Input.GetButtonDown("Jump");
+        if (jumpInput && isGrounded())
+        {
+            AudioManager.Play("Jump");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,12 +68,12 @@ public class PlayerSounds : MonoBehaviour
         {
             case 8:
                 //PlayBounceSound("BallBouncingWater");
-                AudioManager.Play("BallBouncingWater");
+                AudioManager.Play("PlayerLandingWater");
                 break;
 
             case 9:
                 //PlayBounceSound("BallBouncingLava");
-                AudioManager.Play("BallBouncingLava");
+                AudioManager.Play("PlayerLandingWater");
                 break;
 
             default:
@@ -86,29 +90,30 @@ public class PlayerSounds : MonoBehaviour
             switch (collisionTag)
             {
                 case "Grower":
-                    PlayLandingSound("BallBouncingMud");
+                    PlayLandingSound("PlayerLandingMud");
                     PlayWalkingSound("FootstepsMud");
                     currentCollision = collisionTag;
                     currentWalkingSound = "FootstepsMud";
                     break;
 
                 case "Shrinker":
-                    PlayLandingSound("BallBouncingMud");
+                    PlayLandingSound("PlayerLanding");
                     PlayWalkingSound("Footsteps");
                     currentCollision = collisionTag;
                     currentWalkingSound = "Footsteps";
                     break;
 
                 case "Normal":
-                    PlayLandingSound("BallBouncingMud");
-                    PlayWalkingSound("Footsteps");
+                    PlayLandingSound("PlayerLandingGrass");
+                    PlayWalkingSound("FootstepsGrass");
                     currentCollision = collisionTag;
-                    currentWalkingSound = "Footsteps";
+                    currentWalkingSound = "FootstepsGrass";
                     break;
 
                 default:
-                    PlayLandingSound("BallBouncing");
+                    PlayLandingSound("PlayerLandingGrass");
                     PlayWalkingSound("FootstepsGrass");
+                    currentWalkingSound = "FootstepsGrass";
                     break;
             }
         }
@@ -123,11 +128,15 @@ public class PlayerSounds : MonoBehaviour
         if (raycastHit.collider != null)
         {
             rayColor = Color.green;
+
         }
         else
         {
             rayColor = Color.red;
         }
+
+        
+
         Debug.DrawRay(playerCollider.bounds.center, Vector2.down * (playerCollider.bounds.extents.y + extraHeight));
         return raycastHit.collider != null;
     }

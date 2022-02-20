@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5771337051693031256}
   - component: {fileID: 5771337051693031263}
   - component: {fileID: 190140388}
+  - component: {fileID: -6370103506018143500}
   m_Layer: 0
   m_Name: VignetteCloser
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3894a11304db5574aaa0965179e64583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   effectBehaviour: {fileID: 0}
 --- !u!50 &5771337051693031256
 Rigidbody2D:
@@ -165,3 +167,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-6370103506018143500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5771337051693031267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c27c6a62acf064bb65967b825f556f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
