@@ -10145,7 +10145,6 @@ MonoBehaviour:
   maxVolumeVel: 1
   maxVolume: 1
   minEQGain: 0.6
-  maxEQGain: 1.4
+  maxEQGain: 1.3
   minEQScale: 0.9
   maxEQScale: 3
-  goAudioManager: {fileID: 0}

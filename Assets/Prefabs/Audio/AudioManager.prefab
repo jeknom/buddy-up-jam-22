@@ -48,7 +48,7 @@ MonoBehaviour:
   - name: MainMusic
     clip: {fileID: 8300000, guid: e62376f32c58c084a9d0505a31cc0fdb, type: 3}
     output: {fileID: 24300002, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
-    volume: 0.438
+    volume: 0.3
     pitch: 1
     loop: 1
     source: {fileID: 0}

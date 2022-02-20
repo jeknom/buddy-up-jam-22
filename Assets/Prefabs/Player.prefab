@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 1554881212240947863}
   - component: {fileID: 1090168299}
   - component: {fileID: 4360703687298628142}
+  - component: {fileID: 1006667446165146051}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -346,6 +347,22 @@ MonoBehaviour:
   movementBehaviour: {fileID: 1554881212240947863}
   playerInput: {fileID: 1554881212240947861}
   deathColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1006667446165146051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554881212240947867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12171e1083389648a9b8e203b1b6470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  goAudioManager: {fileID: 239783386542062412, guid: be8e87317d23d7049b2c45e85babf962, type: 3}
 --- !u!1 &1934833726817814543
 GameObject:
   m_ObjectHideFlags: 0

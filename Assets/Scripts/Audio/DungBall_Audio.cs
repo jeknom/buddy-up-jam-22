@@ -14,7 +14,7 @@ public class DungBall_Audio : MonoBehaviour
     [SerializeField] [Range(0.05f, 3)] private float maxEQGain = 2f;
     [SerializeField] [Range(0.1f, 3)] private float minEQScale = 0.9f;
     [SerializeField] [Range(0.1f, 3)] private float maxEQScale = 3f;
-    [SerializeField] private GameObject goAudioManager; 
+    private GameObject goAudioManager; 
     private Rigidbody2D rb2d;
     private AudioManager AudioManager;
     private MixerManager MixerManager;
@@ -28,6 +28,7 @@ public class DungBall_Audio : MonoBehaviour
     void Awake()
     {
         this.rb2d = this.GetComponent<Rigidbody2D>();
+        goAudioManager = GameObject.Find("AudioManager");
         AudioManager = goAudioManager.GetComponent<AudioManager>();
         MixerManager = goAudioManager.GetComponent<MixerManager>();
         DungBall = GameObject.Find("DungBall").GetComponent<DungBall>();
@@ -90,11 +91,11 @@ public class DungBall_Audio : MonoBehaviour
                     break;
 
                 case "Shrinker":
-                    PlayBounceSound("BallBouncingGrass");
+                    PlayBounceSound("BallBouncing");
                     MixerManager.SetVolume(currentRollingSound, muteVolume);
-                    MixerManager.SetVolume("BallRollingGrass", 0);
+                    MixerManager.SetVolume("BallRolling", 0);
                     currentCollision = collisionTag;
-                    currentRollingSound = "BallRollingGrass";
+                    currentRollingSound = "BallRolling";
                     break;
 
                 case "Normal":
@@ -106,8 +107,10 @@ public class DungBall_Audio : MonoBehaviour
                     break;
 
                 default:
-                    PlayBounceSound("BallBouncing");
-                    MixerManager.SetVolume(currentRollingSound, 0);
+                    PlayBounceSound("BallBouncingGrass");
+                    MixerManager.SetVolume(currentRollingSound, muteVolume);
+                    MixerManager.SetVolume("BallRollingGrass", 0);
+                    currentRollingSound = "BallRollingGrass";
                     break;
             }
         }

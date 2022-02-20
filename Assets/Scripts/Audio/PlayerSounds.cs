@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSounds : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private GameObject goAudioManager;
+    private GameObject goAudioManager;
     private AudioManager AudioManager;
     private MixerManager MixerManager;
     private BoxCollider2D playerCollider;
@@ -24,6 +24,7 @@ public class PlayerSounds : MonoBehaviour
     {
         playerCollider = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
+        goAudioManager = GameObject.Find("AudioManager");
         AudioManager = goAudioManager.GetComponent<AudioManager>();
         MixerManager = goAudioManager.GetComponent<MixerManager>();
     }
@@ -80,7 +81,7 @@ public class PlayerSounds : MonoBehaviour
             MuteAllWalkingSounds();
             canLand = true;
         }
-        else if (collisionTag != currentCollision) //starts the appropriate walking sound loop
+        else if (collisionTag != currentCollision && horizontalInput != 0) //starts the appropriate walking sound loop
         {
             switch (collisionTag)
             {
@@ -93,9 +94,9 @@ public class PlayerSounds : MonoBehaviour
 
                 case "Shrinker":
                     PlayLandingSound("BallBouncingMud");
-                    PlayWalkingSound("FootstepsGrass");
+                    PlayWalkingSound("Footsteps");
                     currentCollision = collisionTag;
-                    currentWalkingSound = "FootstepsGrass";
+                    currentWalkingSound = "Footsteps";
                     break;
 
                 case "Normal":
@@ -107,7 +108,7 @@ public class PlayerSounds : MonoBehaviour
 
                 default:
                     PlayLandingSound("BallBouncing");
-                    MixerManager.SetVolume(currentWalkingSound, 0);
+                    PlayWalkingSound("FootstepsGrass");
                     break;
             }
         }
