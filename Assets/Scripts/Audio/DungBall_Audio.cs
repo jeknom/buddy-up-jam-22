@@ -20,7 +20,6 @@ public class DungBall_Audio : MonoBehaviour
     private MixerManager MixerManager;
     private DungBall DungBall;
     private float currentVelocity;
-    private float currentVerticalVelocity;
     private string currentCollision;
     private string currentRollingSound = "BallRolling";
     private const float muteVolume = -80.0f;
@@ -51,17 +50,34 @@ public class DungBall_Audio : MonoBehaviour
         SetEQWithSize();
     }
 
-    //Plays the appropriate sound depending on the ground type
+    //Plays the appropriate sounds depending on situation
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string collisionTag = collision.gameObject.tag;
+        int layerTag = collision.gameObject.layer; // layer 8: BallDestroy, layer 9: PlayerDestroy
+
+        switch (layerTag)
+        {
+            case 8:
+                //PlayBounceSound("BallBouncingWater");
+                AudioManager.Play("BallBouncingWater");
+                break;
+
+            case 9:
+                //PlayBounceSound("BallBouncingLava");
+                AudioManager.Play("BallBouncingLava");
+                break;
+
+            default:
+                break;
+        }
 
         if (!DungBall.IsBallGrounded())
         {
             MuteAllRollingSounds();
             canBounce = true;
         }
-        else if (collisionTag != currentCollision)
+        else if (collisionTag != currentCollision) //starts the appropriate rolling sound loop
         {
             switch (collisionTag)
             {
@@ -140,13 +156,13 @@ public class DungBall_Audio : MonoBehaviour
         AudioManager.Play("BallRollingGrass");
     }
 
+    //The bool is there to avoid playing the bouncing sound when rolling on different grounds
     private void PlayBounceSound(string sound)
     {  
         if (canBounce)
         {
             AudioManager.Play(sound);
             canBounce = false;
-            //Debug.Log("Bounce");
         }                 
     }
 }

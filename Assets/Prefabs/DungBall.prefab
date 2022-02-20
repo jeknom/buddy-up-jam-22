@@ -5279,11 +5279,11 @@ MonoBehaviour:
   maxSize: 3
   minSize: 1
   maxMass: 20
-  collisionRadiusSize: 1
+  collisionRayLength: 0.2
   scalingModifier: 0.5
   destroySpeed: 2
   statusTextPrefix: 'Ball mass:'
-  debug: 1
+  debug: 0
   debugPos:
     serializedVersion: 2
     x: 0
@@ -5324,8 +5324,8 @@ MonoBehaviour:
   minVolumeVel: 0.3
   maxVolumeVel: 1
   maxVolume: 1
-  minEQGain: 0.4
-  maxEQGain: 2
+  minEQGain: 0.6
+  maxEQGain: 1.4
   minEQScale: 0.9
   maxEQScale: 3
-  goAudioManager: {fileID: 239783386542062412, guid: be8e87317d23d7049b2c45e85babf962, type: 3}
+  goAudioManager: {fileID: 0}
