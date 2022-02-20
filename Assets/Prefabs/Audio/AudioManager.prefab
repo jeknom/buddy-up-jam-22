@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &239783386542062412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239783386542062418}
+  - component: {fileID: 239783386542062419}
+  - component: {fileID: 239783386542062417}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239783386542062418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239783386542062412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4099334, y: 0.6415628, z: -0.90582}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &239783386542062419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239783386542062412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebbb279ded9d094aa8a69e0dca86b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: e62376f32c58c084a9d0505a31cc0fdb, type: 3}
+    output: {fileID: 24300002, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.438
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BallRolling
+    clip: {fileID: 8300000, guid: 8e63ceb3e0570d846810a396b40b3cd1, type: 3}
+    output: {fileID: 3669874544646714369, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BallRollingGrass
+    clip: {fileID: 8300000, guid: a4629f0bc01a90148a05852f07f41de9, type: 3}
+    output: {fileID: 4274399477814362227, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BallRollingMud
+    clip: {fileID: 8300000, guid: ccf54007a03a45f4ab156b94fa0d0b54, type: 3}
+    output: {fileID: -1045864993348236872, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.7
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: BallBouncing
+    clip: {fileID: 8300000, guid: b3538028ef6902b44a5a53230a198b8f, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallBouncingGrass
+    clip: {fileID: 8300000, guid: 49aa6ed37e29e974d95727ac973ff83d, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallBouncingMud
+    clip: {fileID: 8300000, guid: 9cee9c5e3bbc59143aa57e9b2d51f1ca, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallBouncingLava
+    clip: {fileID: 8300000, guid: bb3857e8bdeacd247979c7b169a29497, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallBouncingWater
+    clip: {fileID: 8300000, guid: c33f17511e23a494baa7cc6e8d660224, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallBouncingWater
+    clip: {fileID: 8300000, guid: c33f17511e23a494baa7cc6e8d660224, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BallDestroy
+    clip: {fileID: 8300000, guid: fcb2cc0da071c024a996ef030260bc47, type: 3}
+    output: {fileID: 5500414658429483164, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Footsteps
+    clip: {fileID: 8300000, guid: d1304c33fdb838f418c9d999773b4f0b, type: 3}
+    output: {fileID: 7633505176496580933, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: FootstepsMud
+    clip: {fileID: 8300000, guid: 30905a8676d550f499dfcd1fb0c2f503, type: 3}
+    output: {fileID: -2349222051418961848, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: FootstepsGrass
+    clip: {fileID: 8300000, guid: 8f4ccc7e2d49183468367b78254a79ed, type: 3}
+    output: {fileID: -8512660869295563633, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+--- !u!114 &239783386542062417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239783386542062412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ae158e32271d74094def245ca68534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}

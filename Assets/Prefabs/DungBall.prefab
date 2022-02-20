@@ -9964,6 +9964,7 @@ GameObject:
   - component: {fileID: 7915247768852845639}
   - component: {fileID: 7915247768852845632}
   - component: {fileID: 7915247768852845638}
+  - component: {fileID: -8427424950308123364}
   m_Layer: 7
   m_Name: DungBall
   m_TagString: DungBall
@@ -10102,7 +10103,7 @@ MonoBehaviour:
   scalingModifier: 0.5
   destroySpeed: 2
   statusTextPrefix: 'Ball mass:'
-  debug: 1
+  debug: 0
   debugPos:
     serializedVersion: 2
     x: 0
@@ -10124,3 +10125,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &-8427424950308123364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7915247768852845635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4daa68f8c5139d540a010e02059697c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPitchVel: 1
+  maxPitchVel: 5
+  minPitch: 0.5
+  maxPitch: 1.5
+  minVolumeVel: 0.3
+  maxVolumeVel: 1
+  maxVolume: 1
+  minEQGain: 0.6
+  maxEQGain: 1.4
+  minEQScale: 0.9
+  maxEQScale: 3
+  goAudioManager: {fileID: 0}
