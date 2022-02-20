@@ -101,8 +101,8 @@ namespace Game
             Time.timeScale = 1;
             pauseMenuCanvas.SetActive(false);
             GameObject.Find("VignetteEffect").GetComponent<VignetteEffect>().CloseVignette();
-            
-            
+            Destroy(gameObject);
+
         }
 
 
@@ -116,6 +116,7 @@ namespace Game
             pauseMenuCanvas.SetActive(false);
             GameObject.Find("Player").GetComponent<Movement>().onPlayerDestroy.Invoke();
             GameObject.Find("GameManager").GetComponent<GameManager>().Death();
+            Destroy(gameObject);
         }
 
         public void Exit()

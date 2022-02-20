@@ -13,7 +13,8 @@ public class EndScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(GameObject.Find("GameManager"));
+
     }
 
     // Update is called once per frame
