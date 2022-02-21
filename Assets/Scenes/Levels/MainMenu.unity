@@ -2479,6 +2479,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &866178471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6338798597835369645, guid: ccac1bcbb8be8fa4f8c2b97d9c74fce5, type: 3}
+  m_PrefabInstance: {fileID: 1133112029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &866178472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866178471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d158180acc3fe744c96fec83b8b389de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vignetteEffect: {fileID: 1603601106}
+  onVignetteClosed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &866178473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866178471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7b1145b6d2f544d807100beaf6bbdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 866178472}
 --- !u!1 &904283094
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,6 +4600,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548074436}
   m_CullTransparentMesh: 1
+--- !u!1 &1603601106 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2771496744293757303, guid: ccac1bcbb8be8fa4f8c2b97d9c74fce5, type: 3}
+  m_PrefabInstance: {fileID: 1133112029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1667576789
 GameObject:
   m_ObjectHideFlags: 0
