@@ -19,7 +19,7 @@ namespace Game
         [Header("Modifiers")]
         [Range(1f, 20f)] public float triggerMass;
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionStay2D(Collision2D collision)
         {
             var collider = collision.collider;
             if (collider.tag == DUNG_BALL_TAG && collider.attachedRigidbody.mass >= this.triggerMass)
