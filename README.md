@@ -1,6 +1,8 @@
 # Buddy Up Game Jam 2022
 
-A game jam that took place on 07.02.2022 - 22.02.2022 and had around 230 participants total.
+A game jam that took place on 07.02.2022 - 22.02.2022 and had around 300 participants total.
+
+Check out the game on [itch.io](https://jeknom.itch.io/bert-the-beetle).
 
 ## Team OvereNgIneErS
 
@@ -18,5 +20,6 @@ A game jam that took place on 07.02.2022 - 22.02.2022 and had around 230 partici
 ## Special thanks to
 
 - HiddenMonk at StackOverflow - [BoxCast debugging script comment](https://answers.unity.com/questions/1156087/how-can-you-visualize-a-boxcast-boxcheck-etc.html)
-- SiLena_ART - [Stone UI] (https://assetstore.unity.com/packages/2d/gui/icons/stone-ui-182526)
-- dubpixel . [Pixelart forest pack] (https://dubpixel.itch.io/pixel-art-forest-pack)
+- SiLena_ART - [Stone UI](https://assetstore.unity.com/packages/2d/gui/icons/stone-ui-182526)
+- dubpixel - [Pixelart forest pack](https://dubpixel.itch.io/pixel-art-forest-pack)
+- Budding Game Devs - [For hosting the event](https://itch.io/jam/buddy-up-jam-2022)
