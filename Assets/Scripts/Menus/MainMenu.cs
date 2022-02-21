@@ -21,7 +21,7 @@ namespace Game
         private float volume;
         [SerializeField, Range(0.1f, 10f)] float amountToScaleEachTick = 0.1f;
         [SerializeField] Animator vignette;
-
+        [SerializeField] GameObject fullScreenText;
         void Start()
         {
             vignette.SetTrigger("Main");
@@ -31,9 +31,16 @@ namespace Game
 
         }
 
-        void FixedUpdate()
+        void Update()
         {
-
+            if(Screen.fullScreen)
+            {
+                fullScreenText.SetActive(false);
+            }
+            else
+            {
+                fullScreenText.SetActive(true);
+            }
         }
 
         public void StartGame()
