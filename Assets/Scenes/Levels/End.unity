@@ -1225,6 +1225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7a10af8f999b24da0d6bc7502cb8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicToPlay: EndingMusic
+  musicToStop: MainMusic
 --- !u!4 &1988389802
 Transform:
   m_ObjectHideFlags: 0
