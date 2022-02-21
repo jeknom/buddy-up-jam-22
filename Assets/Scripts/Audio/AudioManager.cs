@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class AudioManager : MonoBehaviour
@@ -8,8 +9,10 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+
     private void Awake()
     {
+        //Debug.Log("Awake");
         if(instance == null)
         {
             instance = this;
@@ -32,7 +35,9 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.spatialBlend = s.spatialBlend;
         }
+
     }
+    
 
     private void Start()
     {

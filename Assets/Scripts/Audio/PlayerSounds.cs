@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game;
 
 public class PlayerSounds : MonoBehaviour
 {
@@ -8,10 +9,8 @@ public class PlayerSounds : MonoBehaviour
     private GameObject goAudioManager;
     private AudioManager AudioManager;
     private MixerManager MixerManager;
+    private PlayerInput PlayerInput;
     private BoxCollider2D playerCollider;
-    private Rigidbody2D rb2D;
-    private float currentVelocity;
-    private bool isWalking;
     private const float muteVolume = -80.0f;
     private string currentWalkingSound;
     private bool canLand;
@@ -23,10 +22,10 @@ public class PlayerSounds : MonoBehaviour
     private void Awake()
     {
         playerCollider = GetComponent<BoxCollider2D>();
-        rb2D = GetComponent<Rigidbody2D>();
         goAudioManager = GameObject.Find("AudioManager");
         AudioManager = goAudioManager.GetComponent<AudioManager>();
         MixerManager = goAudioManager.GetComponent<MixerManager>();
+        PlayerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -50,8 +49,21 @@ public class PlayerSounds : MonoBehaviour
             PlayWalkingSound(currentWalkingSound);
             isMute = false;
         }
-
-        jumpInput = Input.GetButtonDown("Jump");
+        foreach (var key in this.PlayerInput.jumpKeys) //Sorry I shamelessly copied your code Yeknom thank you
+        {
+            var isPressed = Input.GetKeyDown(key);
+            if (isPressed)
+            {
+                jumpInput = true;
+                break;
+            }
+            else
+            {
+                jumpInput = false;
+            }
+        }
+        
+        
         if (jumpInput && isGrounded())
         {
             AudioManager.Play("Jump");
