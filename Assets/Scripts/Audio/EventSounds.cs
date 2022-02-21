@@ -28,6 +28,5 @@ public class EventSounds : MonoBehaviour
     public void PlayEndingSound()
     {
         AudioManager.Play("Ending");
-        Debug.Log("Played Ending sound");
     }
 }

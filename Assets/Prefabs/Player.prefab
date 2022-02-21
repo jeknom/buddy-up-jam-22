@@ -361,8 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
-  goAudioManager: {fileID: 239783386542062412, guid: be8e87317d23d7049b2c45e85babf962, type: 3}
+    m_Bits: 192
 --- !u!1 &1934833726817814543
 GameObject:
   m_ObjectHideFlags: 0

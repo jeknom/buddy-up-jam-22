@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class AudioManager : MonoBehaviour
@@ -8,8 +9,11 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    bool isPlayingEndingMusic = false;
+
     private void Awake()
     {
+        //Debug.Log("Awake");
         if(instance == null)
         {
             instance = this;
@@ -32,12 +36,31 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
             s.source.spatialBlend = s.spatialBlend;
         }
+
+        /*
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.buildIndex == 6)
+        {
+            Debug.Log("Ending Music");
+            Stop("MainMusic");
+            Play("EndingMusic");
+            isPlayingEndingMusic = true;
+        }
+        else if (isPlayingEndingMusic)
+        {
+            Debug.Log("MainMusic");
+            Play("MainMusic");
+            isPlayingEndingMusic = false;
+        }
+        */
     }
+    
 
     private void Start()
     {
         Play("MainMusic");
-    }
+    }    
+   
 
     public void Play(string name)
     {
