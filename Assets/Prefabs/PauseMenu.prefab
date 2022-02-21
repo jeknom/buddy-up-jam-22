@@ -864,9 +864,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 505854706196247376, guid: 57f73ad5e4f139a44aa472942695f338, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Game.PauseGame, Assembly-CSharp
-        m_MethodName: UnMuteAllSounds
+        m_MethodName: Main
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1652,9 +1652,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 505854706196247376, guid: 57f73ad5e4f139a44aa472942695f338, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Game.PauseGame, Assembly-CSharp
-        m_MethodName: UnMuteAllSounds
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
