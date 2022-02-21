@@ -8,6 +8,8 @@ namespace Game
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class Movement : MonoBehaviour
     {
+
+        [SerializeField] ParticleSystem jump;
         public struct PlayerCollision
         {
             public string tag;
@@ -129,6 +131,7 @@ namespace Game
         void HandleJump()
         {
             this.rb2d.AddForce(new Vector2(0f, this.jumpForce * this.rb2d.gravityScale), ForceMode2D.Impulse);
+            jump.Play();
         }
 
         List<PlayerCollision> GetCollisions()

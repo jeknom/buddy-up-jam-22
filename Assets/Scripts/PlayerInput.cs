@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +8,7 @@ namespace Game
     public class PlayerInput : MonoBehaviour
     {
         [Header("Setup")]
-        [SerializeField] KeyCode jumpKey;
+        [SerializeField] List<KeyCode> jumpKeys;
 
         public UnityEvent onChangeDirection;
 
@@ -35,7 +36,17 @@ namespace Game
                 onChangeDirection.Invoke();
                 this.lastDirection = direction;
             }
-            var isJumping = Input.GetKeyDown(this.jumpKey);
+
+            var isJumping = false;
+            foreach (var key in this.jumpKeys)
+            {
+                var isPressed = Input.GetKeyDown(key);
+                if (isPressed)
+                {
+                    isJumping = true;
+                    break;
+                }
+            }
 
             this.movementBehaviour.Move(direction, isJumping, false);
         }
