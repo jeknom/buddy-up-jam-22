@@ -8,7 +8,7 @@ namespace Game
     public class PlayerInput : MonoBehaviour
     {
         [Header("Setup")]
-        [SerializeField] List<KeyCode> jumpKeys;
+        public List<KeyCode> jumpKeys;
 
         public UnityEvent onChangeDirection;
 
