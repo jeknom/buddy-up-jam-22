@@ -6,6 +6,7 @@ public class EventSounds : MonoBehaviour
 {
     private GameObject goAudioManager;
     private AudioManager AudioManager;
+    private bool hasPlayedPressurePlate;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,16 @@ public class EventSounds : MonoBehaviour
 
     public void PlayPressurePlateSound()
     {
-        AudioManager.Play("PressurePlate");
-        Debug.Log("Played PressurePlate sound");
+        if (!hasPlayedPressurePlate)
+        {
+            AudioManager.Play("PressurePlate");
+            hasPlayedPressurePlate = true;
+        }
+        
+    }
+
+    public void PlayEndingSound()
+    {
+        AudioManager.Play("Ending");
     }
 }
