@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d172680b0218d4f80d5b3397d2049e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpKey: 32
+  jumpKeys: 200000007700000011010000
   onChangeDirection:
     m_PersistentCalls:
       m_Calls: []
@@ -362,7 +362,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  goAudioManager: {fileID: 239783386542062412, guid: be8e87317d23d7049b2c45e85babf962, type: 3}
 --- !u!1 &1934833726817814543
 GameObject:
   m_ObjectHideFlags: 0
