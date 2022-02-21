@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1450763994123596620}
   - component: {fileID: 3030606483000711869}
   - component: {fileID: 5274038982176397518}
+  - component: {fileID: 1500317854920414481}
   m_Layer: 6
   m_Name: Breakable
   m_TagString: Untagged
@@ -162,6 +163,18 @@ MonoBehaviour:
           m_StringArgument: Breaking
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1500317854920414481}
+        m_TargetAssemblyTypeName: EventSounds, Assembly-CSharp
+        m_MethodName: PlayBreakableSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onNotEnoughBallMass:
     m_PersistentCalls:
       m_Calls:
@@ -205,7 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330a937e6cce3484f973b9363c08a0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakDelay: 1
 --- !u!95 &3030606483000711869
 Animator:
   serializedVersion: 3
@@ -242,3 +254,15 @@ MonoBehaviour:
   yOffset: 0
   statusSize: 2
   prefix: Break
+--- !u!114 &1500317854920414481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450763994123596598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e396c49915b144ba0b1e83b87a1ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
