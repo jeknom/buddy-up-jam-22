@@ -1050,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressurePlateTopParent
       objectReference: {fileID: 0}
+    - target: {fileID: 2999551922911931797, guid: 8c3b3f6535543de49aa2d485cc2f97ac, type: 3}
+      propertyPath: m_Constraints
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2999551922911931799, guid: 8c3b3f6535543de49aa2d485cc2f97ac, type: 3}
       propertyPath: onEnoughDungBallMass.m_PersistentCalls.m_Calls.Array.size
       value: 2
