@@ -116,7 +116,12 @@ namespace Game
             pauseMenuCanvas.SetActive(false);
             GameObject.Find("Player").GetComponent<Movement>().onPlayerDestroy.Invoke();
             GameObject.Find("GameManager").GetComponent<GameManager>().Death();
-            Destroy(gameObject);
+
+            if(SceneManager.GetActiveScene().name == "Level1")
+            {
+                Destroy(gameObject);
+            }
+            
         }
 
         public void Exit()
