@@ -16,6 +16,9 @@ namespace Game
         bool isDead;
         Vector2 lastDirection = Vector2.right;
 
+        float horizontalAxis;
+        bool isJumping;
+
         void Awake()
         {
             this.movementBehaviour = this.GetComponent<Movement>();
@@ -24,12 +27,26 @@ namespace Game
 
         void Update()
         {
+            this.horizontalAxis = Input.GetAxisRaw("Horizontal");
+
+            foreach (var key in this.jumpKeys)
+            {
+                var isPressed = Input.GetKeyDown(key);
+                if (isPressed && !this.isJumping)
+                {
+                    isJumping = true;
+                    break;
+                }
+            }
+        }
+
+        void FixedUpdate()
+        {
             if (this.isDead)
             {
                 return;
             }
 
-            var horizontalAxis = Input.GetAxisRaw("Horizontal");
             var direction = horizontalAxis > 0 ? Vector2.right : horizontalAxis < 0 ? Vector2.left : Vector2.zero;
             if (direction != this.lastDirection && direction != Vector2.zero)
             {
@@ -37,18 +54,12 @@ namespace Game
                 this.lastDirection = direction;
             }
 
-            var isJumping = false;
-            foreach (var key in this.jumpKeys)
-            {
-                var isPressed = Input.GetKeyDown(key);
-                if (isPressed)
-                {
-                    isJumping = true;
-                    break;
-                }
-            }
-
             this.movementBehaviour.Move(direction, isJumping, false);
+
+            if (this.isJumping)
+            {
+                this.isJumping = false;
+            }
         }
     }
 }

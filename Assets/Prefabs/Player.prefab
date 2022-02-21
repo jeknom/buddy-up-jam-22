@@ -301,7 +301,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   horizontalAcceleration: 300
-  horizontalMaxSpeed: 5
+  horizontalMaxSpeed: 2.5
   jumpForce: 6
   slide: 0.5
   movementSmoothing: 0.01
