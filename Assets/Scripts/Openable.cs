@@ -4,34 +4,36 @@ using UnityEngine;
 
 namespace Game
 {
-    [RequireComponent(typeof(DistanceJoint2D))]
     public class Openable : MonoBehaviour
     {
+        [SerializeField] Rigidbody2D ballBody;
         [SerializeField, Range(1f, 10f)] float moveSpeed;
+        [SerializeField] Transform openPosition;
+        [SerializeField] Transform closePosition;
+        [SerializeField] float speed;
 
         bool isOpen;
-        float maxDistance;
-        DistanceJoint2D distanceJoint2D;
+        Rigidbody2D rb2d;
 
         public void Open() => this.isOpen = true;
         public void Close() => this.isOpen = false;
 
         void Awake()
         {
-            this.distanceJoint2D = this.GetComponent<DistanceJoint2D>();
-            this.maxDistance = this.distanceJoint2D.distance;
+            this.rb2d = this.GetComponent<Rigidbody2D>();
         }
 
         void Update()
         {
-
-            if (isOpen && distanceJoint2D.distance > 2f)
+            Debug.Log(isOpen);
+            var currentPosition = this.rb2d.position;
+            if (isOpen && currentPosition != (Vector2)openPosition.position)
             {
-                this.distanceJoint2D.distance -= (this.moveSpeed * Time.deltaTime);
+                this.rb2d.position = Vector2.MoveTowards(currentPosition, (Vector2)openPosition.position, this.speed);
             }
-            else if (!isOpen && distanceJoint2D.distance < this.maxDistance)
+            else if (!isOpen && currentPosition != (Vector2)closePosition.position)
             {
-                this.distanceJoint2D.distance += (this.moveSpeed * Time.deltaTime);
+                this.rb2d.position = Vector2.MoveTowards(currentPosition, (Vector2)closePosition.position, this.speed);
             }
         }
     }
