@@ -5950,7 +5950,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: 11, y: -17, z: 0}
+  - first: {x: 11, y: -18, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -5960,7 +5960,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: 12, y: -17, z: 0}
+  - first: {x: 12, y: -18, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -5970,7 +5970,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: 13, y: -17, z: 0}
+  - first: {x: 13, y: -18, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -5980,7 +5980,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
-  - first: {x: 14, y: -17, z: 0}
+  - first: {x: 14, y: -18, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -6117,22 +6117,6 @@ CompositeCollider2D:
         Y: -160000100
       - X: 200000041
         Y: -160000100
-    - - X: 150000100
-        Y: -170000041
-      - X: 150000100
-        Y: -159999959
-      - X: 150000041
-        Y: -159999900
-      - X: 109999959
-        Y: -159999900
-      - X: 109999900
-        Y: -159999959
-      - X: 109999900
-        Y: -170000041
-      - X: 109999959
-        Y: -170000100
-      - X: 150000041
-        Y: -170000100
     - - X: 90000100
         Y: -180000041
       - X: 90000100
@@ -6149,20 +6133,36 @@ CompositeCollider2D:
         Y: -180000100
       - X: 90000041
         Y: -180000100
+    - - X: 150000100
+        Y: -180000041
+      - X: 150000100
+        Y: -169999959
+      - X: 150000041
+        Y: -169999900
+      - X: 109999959
+        Y: -169999900
+      - X: 109999900
+        Y: -169999959
+      - X: 109999900
+        Y: -180000041
+      - X: 109999959
+        Y: -180000100
+      - X: 150000041
+        Y: -180000100
   m_CompositePaths:
     m_Paths:
     - - {x: 19.999975, y: -16.00001}
       - {x: 19.999975, y: -14.99999}
       - {x: 16.99999, y: -15.000026}
       - {x: 17.000027, y: -16.00001}
-    - - {x: 14.999974, y: -17.00001}
-      - {x: 14.999974, y: -15.99999}
-      - {x: 10.99999, y: -16.000027}
-      - {x: 11.000026, y: -17.00001}
     - - {x: 8.999974, y: -18.00001}
       - {x: 8.999974, y: -16.99999}
       - {x: 4.99999, y: -17.000027}
       - {x: 5.0000253, y: -18.00001}
+    - - {x: 14.999974, y: -18.00001}
+      - {x: 14.999974, y: -16.99999}
+      - {x: 10.99999, y: -17.000027}
+      - {x: 11.000026, y: -18.00001}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!19719996 &676827846
