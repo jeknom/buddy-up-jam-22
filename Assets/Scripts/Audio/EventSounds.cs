@@ -24,4 +24,10 @@ public class EventSounds : MonoBehaviour
         AudioManager.Play("PressurePlate");
         Debug.Log("Played PressurePlate sound");
     }
+
+    public void PlayEndingSound()
+    {
+        AudioManager.Play("Ending");
+        Debug.Log("Played Ending sound");
+    }
 }
