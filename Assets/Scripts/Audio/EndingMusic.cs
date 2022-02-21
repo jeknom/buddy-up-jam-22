@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class EndingMusic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject goAudioManager;
+    private AudioManager AudioManager;
+    private void Start()
     {
-        
+        goAudioManager = GameObject.Find("AudioManager");
+        AudioManager = goAudioManager.GetComponent<AudioManager>();
+        AudioManager.Stop("MainMusic");
+        AudioManager.Play("EndingMusic");
     }
 
     // Update is called once per frame

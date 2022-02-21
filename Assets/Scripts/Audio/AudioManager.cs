@@ -9,7 +9,9 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    bool isPlayingEndingMusic = false;
+    [HideInInspector] public bool hasPlayedEndingMusic = false;
+
+    
 
     private void Awake()
     {
@@ -37,30 +39,29 @@ public class AudioManager : MonoBehaviour
             s.source.spatialBlend = s.spatialBlend;
         }
 
-        /*
-        Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.buildIndex == 6)
-        {
-            Debug.Log("Ending Music");
-            Stop("MainMusic");
-            Play("EndingMusic");
-            isPlayingEndingMusic = true;
-        }
-        else if (isPlayingEndingMusic)
-        {
-            Debug.Log("MainMusic");
-            Play("MainMusic");
-            isPlayingEndingMusic = false;
-        }
-        */
     }
     
 
     private void Start()
     {
         Play("MainMusic");
-    }    
-   
+    }
+
+    private void Update()
+    {
+        if (hasPlayedEndingMusic)
+        {
+            Scene CurrentScene = SceneManager.GetActiveScene();
+            float sceneIndex = CurrentScene.buildIndex;
+            if (!hasPlayedEndingMusic && (sceneIndex == 1))
+            {
+                Stop("EndingMusic");
+                Play("CurrentMusic");
+                hasPlayedEndingMusic = false;
+            }
+        }
+        
+    }
 
     public void Play(string name)
     {

@@ -25,7 +25,6 @@ public class EventSounds : MonoBehaviour
         if (!hasPlayedPressurePlate)
         {
             AudioManager.Play("PressurePlate");
-            Debug.Log("Played PressurePlate sound");
             hasPlayedPressurePlate = true;
         }
         

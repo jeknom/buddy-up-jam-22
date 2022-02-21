@@ -230,13 +230,14 @@ MonoBehaviour:
     spatialBlend: 0.5
     source: {fileID: 0}
   - name: EndingMusic
-    clip: {fileID: 8300000, guid: a51970a8263523c499c06a449dc4d320, type: 3}
+    clip: {fileID: 8300000, guid: e15e5ea6c0b06384f87959306ea6b010, type: 3}
     output: {fileID: 2403965218388724421, guid: 9c49fcd8bee99854ca2297b54770a0b9, type: 2}
-    volume: 0.3
+    volume: 0.5
     pitch: 1
     loop: 0
     spatialBlend: 0
     source: {fileID: 0}
+  hasPlayedEndingMusic: 0
 --- !u!114 &239783386542062417
 MonoBehaviour:
   m_ObjectHideFlags: 0
