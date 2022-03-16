@@ -1,6 +1,10 @@
 # Buddy Up Game Jam 2022
 
-A game jam that took place on 07.02.2022 - 22.02.2022 and had around 300 participants total.
+A game jam that took place on 07.02.2022 - 22.02.2022 and had around 300 participants total. This game came in 4th in the overall ratings and 2nd for being enjoyable.
+
+![ranking](https://i.imgur.com/8ZWM6uY.png)
+
+## Play the game
 
 Check out the game on [itch.io](https://jeknom.itch.io/bert-the-beetle).
 
